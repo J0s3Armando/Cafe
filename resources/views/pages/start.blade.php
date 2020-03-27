@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-  <title>Mukulum - café</title>
+  <title>Café Mukulum - Inicio</title>
 @endsection
 @section('section')
  <section id="carouselControls" class="carousel slide" data-ride="carousel">
@@ -115,7 +115,7 @@
           <p class="h2 mb-4"><i class="fa fa-map-marker text-danger" aria-hidden="true"></i>
           </p>
           <p class="h4 text-center">Sancristobal De Las Casas</p>
-          <p> <button type="button" class="btn btn-outline-secondary" id="local1" name="button">El Marchante, Mercado Culinario</button> </p>
+          <p> <button type="button" class="btn btn-outline-secondary" id="local1" name="button">Marchante, Mercadito Culinario</button> </p>
           <p class="h4 text-center">Tuxtla Gutiérrez</p>
           <p> <button type="butgit ton" class="btn btn-outline-secondary" id="local2" name="button">Hotel Hilton Garden Inn</button> </p>
           <p> <button type="button" class="btn btn-outline-secondary" id="local21" name="button">Amor A Chiapas Bazar</button> </p>

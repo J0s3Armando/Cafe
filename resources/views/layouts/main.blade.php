@@ -16,7 +16,7 @@
   <body>
     <header class="bg-light container-fluid ">
        <nav class="navbar navbar-expand-lg  bg-light navbar-light p-1">
-         <a class="navbar-brand logo-button" href="#"><img class="img-fluid logo rounded-circle" src="{{asset('img/logoMukulum.jpg')}}"  alt=""> Mukulum coffee</a>
+         <a class="navbar-brand logo-button" href="{{ route('inicio')}}"><img class="img-fluid logo rounded-circle" src="{{asset('img/logoMukulum.jpg')}}"  alt=""> Café Mukulum</a>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
            <span class="navbar-toggler-icon"></span>
          </button>
@@ -50,7 +50,7 @@
         <div class="col-12 mt-4">
           <p class="text-center font-weight-light font-weight-bold h4"> Síguenos en nuestras redes sociales!!</p>
            <p class="text-center">
-             <a href="#" class="text-primary text-decoration-none mx-2 h2" title="Facebook"><i class="fa fa-facebook-square" aria-hidden="true"></i>
+             <a href="https://es-la.facebook.com/cafemukulum/" class="text-primary text-decoration-none mx-2 h2" title="Facebook"><i class="fa fa-facebook-square" aria-hidden="true"></i>
             </a>
              <a href="#" class="text-danger text-decoration-none mx-2 h2" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i>
              </a>
@@ -76,8 +76,6 @@
           </div>
         </div>
         <div class="col-md-6 order-md-2 order-1">
-            <p class="text-center h4 font-weight-light">Horario de atención</p>
-            <p class="text-center font-weight-light">De 8:00 am a 4:00 pm - Lunes a sábado</p>
             <div class="container">
               <div class="row">
                 <div class="col-12 px-5">
