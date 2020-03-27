@@ -43,6 +43,14 @@ body{
         background-repeat: no-repeat;
         background-size: cover;
     }
+
+    .jumbotron
+    {
+      .hour{
+        border-bottom: solid 1px #5a2e2e;
+        color: #5a2e2e;
+      }
+    }
 }
 
 @media screen and (max-width:860px){

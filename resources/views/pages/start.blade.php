@@ -112,15 +112,14 @@
            
         </div>
         <div class="col-lg-5 text-center ">
-          <p class="h2 mb-4"><i class="fa fa-map-marker" aria-hidden="true"></i>
+          <p class="h2 mb-4"><i class="fa fa-map-marker text-danger" aria-hidden="true"></i>
           </p>
           <p class="h4 text-center">Sancristobal De Las Casas</p>
           <p> <button type="button" class="btn btn-outline-secondary" id="local1" name="button">El Marchante, Mercado Culinario</button> </p>
           <p class="h4 text-center">Tuxtla Gutiérrez</p>
-          <p> <button type="button" class="btn btn-outline-secondary" id="local2" name="button">Hotel Hilton Garden Inn</button> </p>
+          <p> <button type="butgit ton" class="btn btn-outline-secondary" id="local2" name="button">Hotel Hilton Garden Inn</button> </p>
           <p> <button type="button" class="btn btn-outline-secondary" id="local21" name="button">Amor A Chiapas Bazar</button> </p>
-          <p class="h4">Horario</p>
-          <p class="font-weight-light">De 8:00 am a 4:00 pm  - De Lunes a Sábado</p>
+          
         </div>
       </section>
     </div>
