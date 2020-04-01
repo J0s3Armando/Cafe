@@ -80,13 +80,13 @@
               <div class="row">
                 <div class="col-12 px-5">
                   <p class="h4 font-weight-light">Datos de contacto</p>
-                  <p class="font-weight-light"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                  <p class="font-weight-light text-center"><i class="fa fa-map-marker" aria-hidden="true"></i>
                    Av.centra No.32 entre 5 y 6 norte, Tuxtla Gutiérrez, Chiapas.</p>
-                  <p class="font-weight-light"><i class="fa fa-phone" aria-hidden="true"></i> 4536789876
+                  <p class="font-weight-light text-center"><i class="fa fa-phone" aria-hidden="true"></i> 4536789876
                   </p>
-                  <p class="font-weight-light"><i class="fa fa-envelope-o" aria-hidden="true"></i> email@email.mx
+                  <p class="font-weight-light text-center"><i class="fa fa-envelope-o" aria-hidden="true"></i> email@email.mx
                   </p>
-                  <p class="font-weight-light"><i class="fa fa-whatsapp" aria-hidden="true"></i> 9876543432</p>
+                  <p class="font-weight-light text-center"><i class="fa fa-whatsapp" aria-hidden="true"></i> 9876543432</p>
                 </div>
               </div>
             </div>
