@@ -11,7 +11,7 @@
           <div class="carousel-item active img-fondo item w-100 h-100">
             <img src="{{ asset('img/cafe_mukulum.jpg')}}" class="img-fluid"  alt="">
             <div class="carousel-caption d-md-block ">
-             <h5>First slide label</h5>
+             <h5>First slide label whacha esto</h5>
              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
            </div>
           </div>
