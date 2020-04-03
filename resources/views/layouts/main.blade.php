@@ -14,13 +14,13 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   </head>
   <body>
-    <header class="bg-light container-fluid ">
-       <nav class="navbar navbar-expand-lg  bg-light navbar-light p-1">
+    <header class="bg-light">
+       <nav class="navbar navbar-expand-lg container bg-light navbar-light p-1">
          <a class="navbar-brand logo-button" href="{{ route('inicio')}}"><img class="img-fluid logo rounded-circle" src="{{asset('img/logoMukulum.jpg')}}"  alt=""> Café Mukulum</a>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
            <span class="navbar-toggler-icon"></span>
          </button>
-         <div class="collapse navbar-collapse d-flex-lg justify-content-around animated fadeInRight" id="navbarNavDropdown">
+         <div class="collapse navbar-collapse d-md-flex justify-content-center" id="navbarNavDropdown">
            <ul class="navbar-nav">
              <li class="nav-item dropdown ml-1 mr-1">
                <a class="nav-link text-dark text-black-50" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

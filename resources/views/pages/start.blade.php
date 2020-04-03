@@ -3,45 +3,46 @@
   <title>Café Mukulum - Inicio</title>
 @endsection
 @section('section')
+
 <div class="container">
-  <div class="row d-lg-flex justify-content-center" >
+  <div class="row d-flex justify-content-center" >
     <div class="col-lg-10 col-md-12">
-      <section id="carouselControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner bg-white w-100">
-          <div class="carousel-item active img-fondo item w-100 h-100">
-            <img src="{{ asset('img/cafe_mukulum.jpg')}}" class="img-fluid"  alt="">
-            <div class="carousel-caption d-md-block ">
-             <h5>First slide label</h5>
-             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-           </div>
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner w-100">
+          <div class="carousel-item active w-100 h-100">
+            <img src="{{asset('img/cafe_mukulum.jpg')}}" class="d-block w-100" alt="...">
+            <div class="carousel-caption  d-block">
+              <h5>First slide label</h5>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </div>
           </div>
-          <div class="carousel-item img-fondo item w-100 h-100"  >
-            <img src="{{ asset('img/cafe_mukulum2.jpg') }}" class="img-fluid"  alt="">
-            <div class="carousel-caption d-md-block ">
-             <h5>First slide label</h5>
-             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-           </div>
+          <div class="carousel-item w-100 h-100">
+            <img src="{{asset('img/cafe_mukulum2.jpg')}}" class="d-block w-100" alt="...">
+            <div class="carousel-caption  d-block">
+              <h5>First slide label</h5>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </div>
           </div>
-          <div class="carousel-item img-fondo item w-100 h-100"  >
-            <img src="{{ asset('img/cafe_mukulum4.jpg') }}" class="img-fluid" alt="">
-            <div class="carousel-caption d-md-block ">
-             <h5>First slide label</h5>
-             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-           </div>
+          <div class="carousel-item w-100 h-100">
+            <img src="{{asset('img/cafe_mukulum4.jpg')}}" class="d-block w-100" alt="...">
+            <div class="carousel-caption  d-block">
+              <h5>First slide label</h5>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </div>
           </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
-      </section>
+      </div>
     </div>
   </div>
-</div>
+</div> 
  
  <section class="container">
    <section class="row mt-5">
