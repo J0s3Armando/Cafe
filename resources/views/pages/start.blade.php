@@ -37,7 +37,7 @@
         </a>
         <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
+          <span class="sr-only">Next next</span>
         </a>
       </div>
     </div>
@@ -47,9 +47,7 @@
  <section class="container">
    <section class="row mt-5">
      <div class="col-12 mb-4">
-       <h4 class="text-center font-weight-light">Algunos de nuestros productos más y mas y mas  populares.
-          <a href="#" class="small">Ver todos</a>
-       </h4>
+       <h4 class="text-center font-weight-light">Algunos de nuestros productos más populares.
      </div>
      <div class="col-12 popular w-100">
        <div id="btnLeft" onclick="slideLeft()" class="left"><i class="fa fa-chevron-circle-left h2" aria-hidden="true"></i>
