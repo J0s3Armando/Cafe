@@ -49,7 +49,6 @@
      <div class="col-12 mb-4">
        <h4 class="text-center font-weight-light">Algunos de nuestros productos más populares.
           <a href="#" class="small">Ver todos</a>
-          <a href="#" class="small">Ver algunos</a>
        </h4>
      </div>
      <div class="col-12 popular w-100">
