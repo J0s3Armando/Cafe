@@ -48,6 +48,9 @@
    <section class="row mt-5">
      <div class="col-12 mb-4">
        <h4 class="text-center font-weight-light">Algunos de nuestros productos más populares.
+          <a href="#" class="small">Ver todos</a>
+       </h4>
+
      </div>
      <div class="col-12 popular w-100">
        <div id="btnLeft" onclick="slideLeft()" class="left"><i class="fa fa-chevron-circle-left h2" aria-hidden="true"></i>
