@@ -55,61 +55,18 @@
        <div id="btnLeft" onclick="slideLeft()" class="left"><i class="fa fa-chevron-circle-left h2" aria-hidden="true"></i>
        </div>
        <div class="flex-grow-1 items mx-2" id="items">
-           <div class="mx-1">
-             <div class="card">
-               <img src="{{asset('img/cafe-prueba.jpg')}}" class="card-img-top" alt="...">
-               <div class="card-body">
-                 <p class="card-title h6 mb-0">$155.00 MXN</p>
-                 <p class="card-text  text-muted">Café de gradono molido de Chiapas</p>
-                 <a href="#" class="btn btn-outline-secondary btn-sm btn-block">Comprar</a>
-               </div>
-             </div>
-           </div>
-
-           <div class="mx-1">
-             <div class="card">
-               <img src="{{asset('img/cafe-prueba.jpg')}}" class="card-img-top" alt="...">
-               <div class="card-body">
-                 <p class="card-title h6 mb-0">$155.00 MXN</p>
-                 <p class="card-text  text-muted">Café de gradono molido de Chiapas</p>
-                 <a href="#" class="btn btn-outline-secondary btn-sm btn-block">Comprar</a>
-               </div>
-             </div>
-           </div>
-
-           <div class="mx-1">
-             <div class="card">
-               <img src="{{asset('img/cafe-prueba.jpg')}}" class="card-img-top" alt="...">
-               <div class="card-body">
-                 <p class="card-title h6 mb-0">$155.00 MXN</p>
-                 <p class="card-text text-muted">Café de gradono molido de Chiapas</p>
-                 <a href="#" class="btn btn-outline-secondary btn-sm btn-block">Comprar</a>
-               </div>
-             </div>
-           </div>
-
-           <div class="mx-1">
-             <div class="card">
-               <img src="{{asset('img/cafe-prueba.jpg')}}" class="card-img-top" alt="...">
-               <div class="card-body">
-                 <p class="card-title h6 mb-0">$155.00 MXN</p>
-                 <p class="card-text text-muted">Café de gradono molido de Chiapas</p>
-                 <a href="#" class="btn btn-outline-secondary btn-sm btn-block">Comprar</a>
-               </div>
-             </div>
-           </div>
-
-           <div class="mx-1">
-             <div class="card">
-               <img src="{{asset('img/cafe-prueba.jpg')}}" class="card-img-top" alt="...">
-               <div class="card-body">
-                 <p class="card-title h6 mb-0">$155.00 MXN</p>
-                 <p class="card-text text-muted">Café de gradono molido de Chiapas</p>
-                 <a href="#" class="btn btn-outline-secondary btn-sm btn-block">Comprar</a>
-               </div>
-             </div>
-           </div>
-
+            @foreach ($products as $product)
+              <div class="mx-1">
+                <div class="card">
+                  <img src="{{ asset($product->image) }}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-title h6 mb-0">${{$product->price}} MXN</p>
+                    <p class="card-text  text-muted">{{$product->name}}</p>
+                    <a href="#" class="btn btn-outline-secondary btn-sm btn-block">Comprar</a>
+                  </div>
+                </div>
+              </div>
+            @endforeach   
        </div>
        <div id="btnRight" onclick="slideRight()" class="right"><i class="fa fa-chevron-circle-right h2" aria-hidden="true"></i>
        </div>

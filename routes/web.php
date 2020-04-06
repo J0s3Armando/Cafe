@@ -1,9 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use illuminate\Http\Request;
+use App\Product;
 
 Route::get('/', function () {
-    return view('pages.start');
+    $products = Product::all();
+    return view('pages.start',compact('products'));
 })->name('inicio');
 
 Route::get('/login',function()
