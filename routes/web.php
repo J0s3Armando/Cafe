@@ -18,3 +18,12 @@ Route::get('/register',function()
 {
     return view('pages.register');
 })->name('register');
+
+Route::post('/product/{id}',function($id){
+    $product = Product::findOrFail($id);
+    if($product==null){
+        return view('admin.user.notFound', [], 404);
+    }else{
+        return view('pages.product-info',compact('product'));
+    }
+})->name('product.info');

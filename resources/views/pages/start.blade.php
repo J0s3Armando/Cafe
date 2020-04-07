@@ -62,7 +62,8 @@
                   <div class="card-body">
                     <p class="card-title h6 mb-0">${{$product->price}} MXN</p>
                     <p class="card-text  text-muted">{{$product->name}}</p>
-                    <a href="#" class="btn btn-outline-secondary btn-sm btn-block">Comprar</a>
+                    <a href="javascript:document.getElementById('product-{{$product->id}}').submit()" class="btn btn-outline-secondary btn-sm btn-block">Comprar</a>
+                    <form id="product-{{$product->id}}" action="{{route('product.info',$product->id)}}" method="POST" hidden>@method('post')@csrf</form>
                   </div>
                 </div>
               </div>
