@@ -3,47 +3,56 @@
   <title>Café Mukulum - Inicio</title>
 @endsection
 @section('section')
+
 <div class="container">
-  <div class="row d-lg-flex justify-content-center" >
+  <div class="row d-flex justify-content-center" >
     <div class="col-lg-10 col-md-12">
-      <section id="carouselControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner bg-white w-100">
-          <div class="carousel-item active img-fondo item w-100 h-100">
-            <img src="{{ asset('img/cafe_mukulum.jpg')}}" class="img-fluid"  alt="">
-            <div class="carousel-caption d-md-block ">
-             <h5>First slide label</h5>
-             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-           </div>
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner w-100">
+          <div class="carousel-item active w-100 h-100">
+            <img src="{{asset('img/cafe_mukulum.jpg')}}" class="d-block w-100" alt="...">
+            <div class="carousel-caption  d-block">
+              <h5>First slide label</h5>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </div>
           </div>
-          <div class="carousel-item img-fondo item w-100 h-100"  >
-            <img src="{{ asset('img/cafe_mukulum2.jpg') }}" class="img-fluid"  alt="">
-            <div class="carousel-caption d-md-block ">
-             <h5>First slide label</h5>
-             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-           </div>
+          <div class="carousel-item w-100 h-100">
+            <img src="{{asset('img/cafe_mukulum2.jpg')}}" class="d-block w-100" alt="...">
+            <div class="carousel-caption  d-block">
+              <h5>First slide label</h5>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </div>
           </div>
-          <div class="carousel-item img-fondo item w-100 h-100"  >
-            <img src="{{ asset('img/cafe_mukulum4.jpg') }}" class="img-fluid" alt="">
-            <div class="carousel-caption d-md-block ">
-             <h5>First slide label</h5>
-             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-           </div>
+          <div class="carousel-item w-100 h-100">
+            <img src="{{asset('img/cafe_mukulum4.jpg')}}" class="d-block w-100" alt="...">
+            <div class="carousel-caption  d-block">
+              <h5>First slide label</h5>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </div>
           </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
-      </section>
+      </div>
     </div>
   </div>
-</div>
+</div> 
  
  <section class="container">
+   @if(session('info'))
+    <div class="alert alert-success mt-3 mb-0 alert-dismissible fade show" role="alert">
+      {{session('info')}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+   @endif
    <section class="row mt-5">
      <div class="col-12 mb-4">
        <h4 class="text-center font-weight-light">Algunos de nuestros productos más populares.
@@ -54,61 +63,19 @@
        <div id="btnLeft" onclick="slideLeft()" class="left"><i class="fa fa-chevron-circle-left h2" aria-hidden="true"></i>
        </div>
        <div class="flex-grow-1 items mx-2" id="items">
-           <div class="mx-1">
-             <div class="card">
-               <img src="{{asset('img/cafe-prueba.jpg')}}" class="card-img-top" alt="...">
-               <div class="card-body">
-                 <p class="card-title h6 mb-0">$155.00 MXN</p>
-                 <p class="card-text  text-muted">Café de gradono molido de Chiapas</p>
-                 <a href="#" class="btn btn-outline-secondary btn-sm btn-block">Comprar</a>
-               </div>
-             </div>
-           </div>
-
-           <div class="mx-1">
-             <div class="card">
-               <img src="{{asset('img/cafe-prueba.jpg')}}" class="card-img-top" alt="...">
-               <div class="card-body">
-                 <p class="card-title h6 mb-0">$155.00 MXN</p>
-                 <p class="card-text  text-muted">Café de gradono molido de Chiapas</p>
-                 <a href="#" class="btn btn-outline-secondary btn-sm btn-block">Comprar</a>
-               </div>
-             </div>
-           </div>
-
-           <div class="mx-1">
-             <div class="card">
-               <img src="{{asset('img/cafe-prueba.jpg')}}" class="card-img-top" alt="...">
-               <div class="card-body">
-                 <p class="card-title h6 mb-0">$155.00 MXN</p>
-                 <p class="card-text text-muted">Café de gradono molido de Chiapas</p>
-                 <a href="#" class="btn btn-outline-secondary btn-sm btn-block">Comprar</a>
-               </div>
-             </div>
-           </div>
-
-           <div class="mx-1">
-             <div class="card">
-               <img src="{{asset('img/cafe-prueba.jpg')}}" class="card-img-top" alt="...">
-               <div class="card-body">
-                 <p class="card-title h6 mb-0">$155.00 MXN</p>
-                 <p class="card-text text-muted">Café de gradono molido de Chiapas</p>
-                 <a href="#" class="btn btn-outline-secondary btn-sm btn-block">Comprar</a>
-               </div>
-             </div>
-           </div>
-
-           <div class="mx-1">
-             <div class="card">
-               <img src="{{asset('img/cafe-prueba.jpg')}}" class="card-img-top" alt="...">
-               <div class="card-body">
-                 <p class="card-title h6 mb-0">$155.00 MXN</p>
-                 <p class="card-text text-muted">Café de gradono molido de Chiapas</p>
-                 <a href="#" class="btn btn-outline-secondary btn-sm btn-block">Comprar</a>
-               </div>
-             </div>
-           </div>
-
+            @foreach ($products as $product)
+              <div class="mx-1">
+                <div class="card">
+                  <img src="{{ asset($product->image) }}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-title h6 mb-0">${{$product->price}} MXN</p>
+                    <p class="card-text  text-muted">{{$product->name}}</p>
+                    <a href="javascript:document.getElementById('product-{{$product->id}}').submit()" class="btn btn-outline-secondary btn-sm btn-block">Comprar</a>
+                    <form id="product-{{$product->id}}" action="{{route('product.info',$product->id)}}" method="GET" hidden>@csrf</form>
+                  </div>
+                </div>
+              </div>
+            @endforeach   
        </div>
        <div id="btnRight" onclick="slideRight()" class="right"><i class="fa fa-chevron-circle-right h2" aria-hidden="true"></i>
        </div>
