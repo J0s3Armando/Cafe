@@ -27,9 +27,10 @@
                 <i class="fa fa-user mr-2" aria-hidden="true"></i>Juan Hernández
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#"><i class="fa fa-user mr-2" aria-hidden="true"></i>Mi perfil</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-sign-out mr-1" aria-hidden="true"></i>Cerrar sesión</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-shopping-bag mr-2" aria-hidden="true"></i>Mis compras</a>
+                <a class="dropdown-item" href="{{route('profile')}}"><i class="fa fa-user mr-2" aria-hidden="true"></i>Mi perfil</a>
+                <a class="dropdown-item" href="{{route('logout')}}"><i class="fa fa-sign-out mr-1" aria-hidden="true"></i>Cerrar sesión</a>
+                <a class="dropdown-item" href="{{route('shopping')}}"><i class="fa fa-shopping-bag mr-2" aria-hidden="true"></i>Mis compras</a>
+                <a class="dropdown-item" href="{{route('admin.principal')}}"><i class="fa fa-lock mr-2" aria-hidden="true"></i>Panel de administración</a>
               </div>
             </li>
             <li class="nav-item ml-1 mr-1 mb-1">

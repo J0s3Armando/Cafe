@@ -45,6 +45,14 @@
 </div> 
  
  <section class="container">
+   @if(session('info'))
+    <div class="alert alert-success mt-3 mb-0 alert-dismissible fade show" role="alert">
+      {{session('info')}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+   @endif
    <section class="row mt-5">
      <div class="col-12 mb-4">
        <h4 class="text-center font-weight-light">Algunos de nuestros productos más populares.
@@ -63,7 +71,7 @@
                     <p class="card-title h6 mb-0">${{$product->price}} MXN</p>
                     <p class="card-text  text-muted">{{$product->name}}</p>
                     <a href="javascript:document.getElementById('product-{{$product->id}}').submit()" class="btn btn-outline-secondary btn-sm btn-block">Comprar</a>
-                    <form id="product-{{$product->id}}" action="{{route('product.info',$product->id)}}" method="POST" hidden>@method('post')@csrf</form>
+                    <form id="product-{{$product->id}}" action="{{route('product.info',$product->id)}}" method="GET" hidden>@csrf</form>
                   </div>
                 </div>
               </div>
