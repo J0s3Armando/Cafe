@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   @yield('title')
   <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
@@ -22,55 +23,82 @@
         </button>
         <div class="collapse navbar-collapse d-flex-lg justify-content-around" id="navbarNavDropdown">
           <ul class="navbar-nav">
-            <li class="nav-item dropdown ml-1 mr-1 mb-1">
-              <a class=" btn-light btn-block btn dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-user mr-2" aria-hidden="true"></i>Juan Hernández
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{{route('profile')}}"><i class="fa fa-user mr-2" aria-hidden="true"></i>Mi perfil</a>
-                <a class="dropdown-item" href="{{route('logout')}}"><i class="fa fa-sign-out mr-1" aria-hidden="true"></i>Cerrar sesión</a>
-                <a class="dropdown-item" href="{{route('shopping')}}"><i class="fa fa-shopping-bag mr-2" aria-hidden="true"></i>Mis compras</a>
-                <a class="dropdown-item" href="{{route('admin.principal')}}"><i class="fa fa-lock mr-2" aria-hidden="true"></i>Panel de administración</a>
-              </div>
-            </li>
-            <li class="nav-item ml-1 mr-1 mb-1">
-              <button class="btn btn-outline-success btn-block" data-toggle="modal" data-target="#sesion">Inicia sesión</button>
-              <div class="modal fade" id="sesion" tabindex="-1" role="dialog" aria-labelledby="sesion" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="sesion">Iniciar sesión</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <form action="" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="email">Correo electrónico</label>
-                            <input type="email" name="email" class="form-control" id="email" required>
-                        </div>
-                        <div class="form-group">
-                             <label for="password">Contraseña</label>
-                             <input type="password" name="password" class="form-control" id="password" required>
-                         </div>
-                         <div class="form-group d-flex justify-content-center">
-                             <input type="submit" value="Aceptar" name="login" class=" mt-3 btn btn-success w-50 btn-block">
-                         </div>
-                    </form>
-                    </div>
-                    <div class="modal-footer"> 
-                      <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+            @guest
+              <li class="nav-item ml-1 mr-1 mb-1">
+                <!--<button class="btn btn-outline-success btn-block" data-toggle="modal" data-target="#sesion">Inicia sesión</button>
+                <div class="modal fade" id="sesion" tabindex="-1" role="dialog" aria-labelledby="sesion" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="sesion">Iniciar sesión</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form action="" method="POST">
+                          @csrf
+                          <div class="form-group">
+                              <label for="email">Correo electrónico</label>
+                              <input type="email" name="email" class="form-control" id="email" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="password">Contraseña</label>
+                              <input type="password" name="password" class="form-control" id="password" required>
+                          </div>
+                          <div class="form-group d-flex justify-content-center">
+                              <input type="submit" value="Aceptar" name="login" class=" mt-3 btn btn-success w-50 btn-block">
+                          </div>
+                      </form>
+                      </div>
+                      <div class="modal-footer"> 
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </li>
-            <li class="nav-item ml-1 mr-1 mb-1">
-              <a class="btn btn-outline-secondary btn-light btn-block" href="{{route('register')}}">
-                Regístrate</a>
-            </li>
+                </div>-->
+                
+                  <a class="btn btn-outline-success btn-block" href="{{ route('login') }}">Inicia sesión</a>
+             
+              </li>
+              @if (Route::has('register'))
+                <li class="nav-item ml-1 mr-1 mb-1">
+                  <a class="btn btn-outline-secondary btn-light btn-block" href="{{route('register')}}">
+                    Regístrate</a>
+                </li>              
+              @endif
+              @else
+               <!-- <li class="nav-item dropdown ml-1 mr-1 mb-1">
+                  <a class=" btn-light btn-block btn dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user mr-2" aria-hidden="true"></i>Juan Hernández
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href=""><i class="fa fa-user mr-2" aria-hidden="true"></i>Mi perfil</a>
+                    <a class="dropdown-item" href=""><i class="fa fa-sign-out mr-1" aria-hidden="true"></i>Cerrar sesión</a>
+                    <a class="dropdown-item" href=""><i class="fa fa-shopping-bag mr-2" aria-hidden="true"></i>Mis compras</a>
+                    <a class="dropdown-item" href=""><i class="fa fa-lock mr-2" aria-hidden="true"></i>Panel de administración</a>
+                  </div>
+                </li>-->
+                <li class="nav-item dropdown">
+                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                      {{ Auth::user()->name }} <span class="caret"></span>
+                  </a>
+
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                          {{ __('Logout') }}
+                      </a>
+
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
+                  </div>
+              </li>
+            @endguest
+            
+
           </ul>
         </div>
       </nav>

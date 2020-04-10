@@ -9,16 +9,6 @@ Route::get('/', function () {
     return view('pages.start',compact('products'));
 })->name('inicio');
 
-Route::get('/login',function()
-{
-    return view('pages.login');
-})->name('login');
-
-Route::get('/register',function()
-{
-    return view('pages.register');
-})->name('register');
-
 Route::get('/product/{id}',function($id){
     try{
         $product = Product::findOrFail($id);
@@ -31,18 +21,24 @@ Route::get('/product/{id}',function($id){
     
 })->name('product.info');
 
+
+
 Route::get('/profile',function(){
     return view('pages.profile');
-})->name('profile');
-
-Route::get('/logout',function(){
-    return 'salir';
-})->name('logout');
+})->name('profile')->middleware('auth');
 
 Route::get('/myshopping',function(){
     return view('pages.shopping');
-})->name('shopping');
+})->name('shopping')->middleware('auth');
 
-Route::get('/admin',function(){
-  return view('admin.index');  
-})->name('admin.principal');
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/panel/admin',function(){
+    if(auth()->user()->level=='1')
+    {
+        return 'panel de admin';
+    }
+    return redirect()->route('inicio')->with('info','Acceso no permitido para este ususario');
+})->name('panel.admin')->middleware('auth');
+
