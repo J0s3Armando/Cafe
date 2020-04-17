@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -50,6 +52,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if($exception instanceof ModelNotFoundException)
+        {
+            return redirect()->route('index')->with('info','Parámetros no válidos');
+        }
+        elseif($exception instanceof MethodNotAllowedHttpException)
+        {
+            return redirect()->route('index');
+        }
         return parent::render($request, $exception);
     }
 }

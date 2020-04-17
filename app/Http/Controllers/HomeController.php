@@ -25,4 +25,14 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function userShopping()
+    {
+        return view('pages.shopping');
+    }
+
+    public function userProfile()
+    {
+        return view('pages.profile');
+    }
 }

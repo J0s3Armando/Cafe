@@ -57,7 +57,21 @@ body{
         }
       }
     }
+}
 
+@media screen and (max-width:780px)
+{
+  body{
+    .container{
+      .card{
+        table{
+          .hidden{
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width:1000px)

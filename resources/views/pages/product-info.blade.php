@@ -1,17 +1,17 @@
 @extends('layouts.main')
 @section('title')
-    <title>{{$product->name}}</title>
+    <title>{{$product->description}}</title>
 @endsection
 @section('section')
     <section class="container"> 
        <div class="row my-4 mx-4">
            <section class="col-md-6 col-sm-10 col-xs-12 d-flex mx-auto align-items-center"> <!-- image section -->
                 <div class="w-100">
-                    <img src="{{ asset($product->image)}}" alt="{{$product->name}}" class="img-fluid">
+                    <img src="{{ asset($product->image)}}" alt="{{$product->description}}" class="img-fluid">
                 </div>
            </section>
            <section class="col-md-6 col-12 mt-4"> <!-- product information -->
-                <h4>{{$product->name}}</h4>
+                <h4>{{$product->description}}</h4>
                 <p>${{$product->price}} MXN</p>
                 <p>{{$product->long_description}}</p>
                 <div class="w-100">
