@@ -3,46 +3,38 @@
 use Illuminate\Support\Facades\Route;
 use illuminate\Http\Request;
 use App\Product;
+use App\Carousel;
+use App\Category;
 
 Route::get('/', function () {
     $products = Product::limit(8)->get();
-    return view('pages.start',compact('products'));
-})->name('inicio');
+    $carousels = Carousel::all();
+    return view('pages.start',compact(['products','carousels']));
+})->name('index');
 
-Route::get('/login',function()
-{
-    return view('pages.login');
-})->name('login');
+//products Area
 
-Route::get('/register',function()
-{
-    return view('pages.register');
-})->name('register');
+Route::get('/product/{id}','ProductController@productInfo')->name('product.info');
 
-Route::get('/product/{id}',function($id){
-    try{
-        $product = Product::findOrFail($id);
-    }
-    catch(Illuminate\Database\Eloquent\ModelNotFoundException $e)
-    {
-        return redirect()->route('inicio')->with('info','El producto no ha sido encontrado');
-    }
-    return view('pages.product-info',compact('product'));
-    
-})->name('product.info');
+//user area
 
-Route::get('/profile',function(){
-    return view('pages.profile');
-})->name('profile');
+Route::get('/profile','HomeController@userProfile')->name('profile');
 
-Route::get('/logout',function(){
-    return 'salir';
-})->name('logout');
+Route::get('/myshopping','HomeController@userShopping')->name('shopping');
 
-Route::get('/myshopping',function(){
-    return view('pages.shopping');
-})->name('shopping');
+//autentication routes
 
-Route::get('/admin',function(){
-  return view('admin.index');  
-})->name('admin.principal');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//ADMIN AREA
+Route::get('/panel/admin','AdminController@index')->name('panel.admin');
+
+Route::get('/panel/admin/create-product','AdminController@createProduct')->name('panel.admin.create-product');
+
+Route::post('/panel/admin/add-Product','AdminController@addNewProduct')->name('panel.admin.addProduct');
+
+Route::get('/panel/admin/{id}/edit-product','AdminController@editProduct')->name('admin.edit.product');
+
+Route::delete('/panel/admin/{id}/delete','AdminController@deleteProduct')->name('admin.delete.product');

@@ -7,35 +7,23 @@
 <div class="container">
   <div class="row d-flex justify-content-center" >
     <div class="col-lg-10 col-md-12">
-      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div id="carouselControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner w-100">
-          <div class="carousel-item active w-100 h-100">
-            <img src="{{asset('img/cafe_mukulum.jpg')}}" class="d-block w-100" alt="...">
-            <div class="carousel-caption  d-block">
-              <h5>First slide label</h5>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          @foreach ($carousels as $carousel)
+            <div class="carousel-item active w-100 h-100">
+              <img src="{{asset($carousel->image)}}" class="d-block w-100" alt="{{$carousel->title}}">
+              <div class="carousel-caption  d-block">
+                <h5>{{$carousel->title}}</h5>
+                <p>{{$carousel->description}}</p>
+              </div>
             </div>
-          </div>
-          <div class="carousel-item w-100 h-100">
-            <img src="{{asset('img/cafe_mukulum2.jpg')}}" class="d-block w-100" alt="...">
-            <div class="carousel-caption  d-block">
-              <h5>First slide label</h5>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </div>
-          </div>
-          <div class="carousel-item w-100 h-100">
-            <img src="{{asset('img/cafe_mukulum4.jpg')}}" class="d-block w-100" alt="...">
-            <div class="carousel-caption  d-block">
-              <h5>First slide label</h5>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </div>
-          </div>
+          @endforeach       
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
@@ -69,7 +57,7 @@
                   <img src="{{ asset($product->image) }}" class="card-img-top" alt="...">
                   <div class="card-body">
                     <p class="card-title h6 mb-0">${{$product->price}} MXN</p>
-                    <p class="card-text  text-muted">{{$product->name}}</p>
+                    <p class="card-text  text-muted">{{$product->description}}</p>
                     <a href="javascript:document.getElementById('product-{{$product->id}}').submit()" class="btn btn-outline-secondary btn-sm btn-block">Comprar</a>
                     <form id="product-{{$product->id}}" action="{{route('product.info',$product->id)}}" method="GET" hidden>@csrf</form>
                   </div>
