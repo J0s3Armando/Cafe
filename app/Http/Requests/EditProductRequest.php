@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class editProductRequest extends FormRequest
+class EditProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,6 +27,7 @@ class editProductRequest extends FormRequest
             'description' =>'required|min:20|max:35',
             'price'=>'required|min:1|numeric',
             'stock'=>'required|min:1|integer',
+            'image'=>'image|max:2048',
             'code'=>'required|string|min:4',
             'long_description'=>'required|string|min:10',
             'id_categories'=>'required|not_in:0',
@@ -42,6 +43,8 @@ class editProductRequest extends FormRequest
             'price.numeric'=>'Sólo se acepta números',
             'stock.required'=>'Debes colocar la cantidad existente',
             'stock.integer'=>'Sólo números enteros',
+            'image.image'=>'Asegúrese que el archivo séa una imágen',
+            'image.max'=>'Tamaño máximo de la imágen es 2MB',
             'code.required'=>'Debes ingresar el código interno del producto',
             'code.min'=>'El código debe contar como mínimmo 4 caracteres',
             'long_description.required'=>'Debes ingresar una descripción al producto',

@@ -43,7 +43,7 @@
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href=""><i class="fa fa-user mr-2" aria-hidden="true"></i>Mi perfil</a>
                     <a class="dropdown-item" href=""><i class="fa fa-shopping-bag mr-2" aria-hidden="true"></i>Mis compras</a>
-                    @if((Auth::user()->level)==1)
+                    @if(Auth::user()->autorize([1,3]))
                       <a class="dropdown-item" href="{{route('panel.admin')}}"><i class="fa fa-lock mr-2" aria-hidden="true"></i>Panel de administración</a>
                     @endif
                       <a class="dropdown-item" href="{{ route('logout') }}"

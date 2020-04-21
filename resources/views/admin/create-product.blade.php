@@ -61,7 +61,7 @@
                             <div class="form-group row">
                                 <label for="long_description" class="col-md-4 col-form-label text-md-right">Descripción</label>
                                 <div class="col-md-6">
-                                    <textarea required  style="min-height:100px; height:100px; max-height:300px;" name="long_description" minlength="fa-rotate-180" placeholder="Agrega una descripción al producto para tus clientes" id="long_description" class="form-control @error('long_description') is-invalid @enderror" autocomplete="long_description" autofocus >{{old('long_description')}}</textarea>
+                                    <textarea required  style="min-height:100px; height:100px; max-height:300px;" name="long_description" minlength="10" placeholder="Agrega una descripción al producto para tus clientes" id="long_description" class="form-control @error('long_description') is-invalid @enderror" autocomplete="long_description" autofocus >{{old('long_description')}}</textarea>
                                     @error('long_description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -115,36 +115,33 @@
             </div>
         </div>
     </section>
-
-    <!-- pendiente por revisar -->
-    <script>
-        document.getElementById('image').onchange=function(e){
-            var files = e.target.files;
-            var type = files[0].type;
-            var preview = document.getElementById('preview');
-            var lblNameFile = document.getElementById('lblNameFile');
-            lblNameFile.innerHTML=files[0].name;
-            preview.innerHTML='';
-            if(type.match("image/*"))
-            {    
-                var reader = new FileReader();
-                reader.readAsDataURL(e.target.files[0]);
-                reader.onload=function()
-                {
-                    var image = document.createElement('img');
-                    image.classList="img-fluid w-100";
-                    image.src=reader.result;
-                    preview.appendChild(image);
-                };              
-            }
-            else{
-                var messageAlert = document.createElement('div');
-                messageAlert.classList = "alert alert-danger";
-                var message = "El archivo seleccionado no cuenta con el formato requerido";
-                messageAlert.innerHTML=message;
-                preview.appendChild(messageAlert);
-            }
+            <script>
+                document.getElementById('image').onchange=function(e){
+        var files = e.target.files;
+        var type = files[0].type;
+        var preview = document.getElementById('preview');
+        var lblNameFile = document.getElementById('lblNameFile');
+        lblNameFile.innerHTML=files[0].name;
+        preview.innerHTML='';
+        if(type.match("image/*"))
+        {    
+            var reader = new FileReader();
+            reader.readAsDataURL(e.target.files[0]);
+            reader.onload=function()
+            {
+                var image = document.createElement('img');
+                image.classList="img-fluid w-100";
+                image.src=reader.result;
+                preview.appendChild(image);
+            };              
         }
-      
-    </script>
+        else{
+            var messageAlert = document.createElement('div');
+            messageAlert.classList = "alert alert-danger";
+            var message = "El archivo seleccionado no cuenta con el formato requerido";
+            messageAlert.innerHTML=message;
+            preview.appendChild(messageAlert);
+        }
+        }
+            </script>
 @endsection

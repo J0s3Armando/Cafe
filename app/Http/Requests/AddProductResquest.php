@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 use phpDocumentor\Reflection\Types\This;
 
-class addProductResquest extends FormRequest
+class AddProductResquest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

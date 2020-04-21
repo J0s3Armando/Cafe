@@ -54,11 +54,11 @@ class Handler extends ExceptionHandler
     {
         if($exception instanceof ModelNotFoundException)
         {
-            return redirect()->route('index')->with('info','Parámetros no válidos');
+            return back();
         }
         elseif($exception instanceof MethodNotAllowedHttpException)
         {
-            return redirect()->route('index');
+            return back();
         }
         return parent::render($request, $exception);
     }

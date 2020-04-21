@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class changeImagaProductResquest extends FormRequest
+class AddNewImageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,20 @@ class changeImagaProductResquest extends FormRequest
     public function rules()
     {
         return [
-            'image'=> 'required|image|max:2048',
+            'title' => 'max:100',
+            'description' => 'max:200',
+            'image'=>'required|max:2048|image',
         ];
     }
 
     public function messages()
     {
         return [
-            'image.required'=>'Debes seleccionar una imágen al producto',
+            'title.max' => 'El título es muy largo',
+            'description.max' => 'La descripción es muy larga',
+            'image.required'=>'El campo imágen es obligatorio',
+            'image.max'=>'La imágen debe ser menor a 2MB',
             'image.image'=>'Asegúrese que el archivo séa una imágen',
-            'image.max'=>'Tamaño máximo de la imágen es 2MB',
         ];
     }
 }

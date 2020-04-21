@@ -11,8 +11,9 @@
                         <p class="mb-0">Editar producto producto</p>
                     </div>
                     <div class="card-body">
-                        <form action="" enctype="multipart/form-data" method="POST">
+                        <form id="updateProduct" action="{{route('admin.editProduct',$product->id)}}" enctype="multipart/form-data" method="POST">
                             @csrf
+                            @method('put')
                             <div class="form-group row">
                                 <label for="description" class="col-md-4 col-form-label text-md-right">Producto</label>
                                 <div class="col-md-6">
@@ -92,7 +93,7 @@
                                 <label for="image" class="col-md-4 col-form-label text-md-right">Imágen</label>
                                 <div class="col-md-6">
                                     <div class="custom-file">
-                                        <input type="file" name="image" id="image" class="custom-file-input @error('image') is-invalid @enderror" required autofocus  accept="image/*" />
+                                        <input type="file" name="image" id="image" class="custom-file-input @error('image') is-invalid @enderror" autofocus  accept="image/*" />
                                         <label for="image" class="custom-file-label" id="lblNameFile" >Selecciona una imágen</label>
                                         @error('image')
                                             <span class="invalid-feedback" role="alert">
@@ -104,7 +105,7 @@
                             </div>                        
                             <div class="form-group row mt-4  justify-content-center d-flex">                           
                                 <div class="col-md-6 justify-content-center d-flex">
-                                   <input type="submit" value="Actualizar" class="btn btn-success">
+                                   <input disabled type="submit" id="btnUpdate" value="Actualizar" class="btn btn-success">
                                 </div>
                             </div>
                         </form>
@@ -118,36 +119,37 @@
             </div>
         </div>
     </section>
-
-    <!-- pendiente por revisar -->
     <script>
         document.getElementById('image').onchange=function(e){
-            var files = e.target.files;
-            var type = files[0].type;
-            var preview = document.getElementById('preview');
-            var lblNameFile = document.getElementById('lblNameFile');
-            lblNameFile.innerHTML=files[0].name;
-            preview.innerHTML='';
-            if(type.match("image/*"))
-            {    
-                var reader = new FileReader();
-                reader.readAsDataURL(e.target.files[0]);
-                reader.onload=function()
-                {
-                    var image = document.createElement('img');
-                    image.classList="img-fluid w-100";
-                    image.src=reader.result;
-                    preview.appendChild(image);
-                };              
-            }
-            else{
-                var messageAlert = document.createElement('div');
-                messageAlert.classList = "alert alert-danger";
-                var message = "El archivo seleccionado no cuenta con el formato requerido";
-                messageAlert.innerHTML=message;
-                preview.appendChild(messageAlert);
-            }
-        }
-      
+  var files = e.target.files;
+  var type = files[0].type;
+  var preview = document.getElementById('preview');
+  var lblNameFile = document.getElementById('lblNameFile');
+  lblNameFile.innerHTML=files[0].name;
+  preview.innerHTML='';
+  if(type.match("image/*"))
+  {    
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload=function()
+      {
+          var image = document.createElement('img');
+          image.classList="img-fluid w-100";
+          image.src=reader.result;
+          preview.appendChild(image);
+      };              
+  }
+  else{
+      var messageAlert = document.createElement('div');
+      messageAlert.classList = "alert alert-danger";
+      var message = "El archivo seleccionado no cuenta con el formato requerido";
+      messageAlert.innerHTML=message;
+      preview.appendChild(messageAlert);
+  }
+}
+
+document.getElementById('updateProduct').onchange = function(){
+document.getElementById('btnUpdate').disabled=false;
+};
     </script>
 @endsection
