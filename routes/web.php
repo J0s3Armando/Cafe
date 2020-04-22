@@ -60,3 +60,13 @@ Route::get('/panel/admin/{id}/carousel-edit','AdminController@editCarouselConten
 Route::put('/panel/admin/{id}/carousel-edit','AdminController@editedCarouselContent')->name('admin.edited.carousel');
 
 Route::delete('/panel/admin/{id}/carousel-delete','AdminController@deleteCarouselContent')->name('admin.delete.carousel');
+
+Route::get('/panel/admin/categories','AdminController@categoriesView')->name('admin.categories.view');
+
+Route::post('/panel/admin/categories','AdminController@AddCategory')->name('add.category');
+
+Route::get('/panel/admin/{id}/category','AdminController@editCategoryView')->name('admin.edit.category');
+
+Route::put('/panel/admin/{id}/category','AdminController@editedCategory')->name('admin.edited.category');
+
+Route::delete('/panel/admin/{id}/category','AdminController@deleteCategory')->name('admin.delete.category');

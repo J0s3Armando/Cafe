@@ -83,7 +83,7 @@
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Apellidos</td>
-                                                                        <td>{{$user->surname}}</td>
+                                                                        <td>{{$user->last_name}}</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Domicilio</td>

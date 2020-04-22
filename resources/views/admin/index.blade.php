@@ -13,6 +13,7 @@
                     @endif
                     <a href="{{route('admin.users')}}" class="btn btn-primary m-1">usuarios</a>
                     <a href="{{route('admin.carousel.view')}}" class="btn btn-primary m-1">Carrusel de imágenes</a>
+                    <a href="{{route('admin.categories.view')}}" class="btn btn-primary m-1">Categorías</a>
                 </div>
             </div>
         </div>
@@ -149,7 +150,7 @@
                     </tbody>
                 </table>
             </div>
-            </div>
+            
         </section>
     </section>
 @endsection

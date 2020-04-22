@@ -16,6 +16,7 @@ use App\Http\Requests\AddNewUserRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\AddNewImageRequest;
 use App\Http\Requests\editedCarouselContentRequest;
+use App\Http\Requests\SaveProductCategoryRequest;
 class AdminController extends Controller
 {
     //
@@ -243,4 +244,60 @@ class AdminController extends Controller
         }
         return back()->with('info','Usted no esta autorizado');
     }
+
+    public function categoriesView(Request $request)
+    {
+        if($request->user()->autorize([1,3]))
+        {
+            $categories = Category::all();
+            return view('admin.categories-view',compact('categories'));
+        }
+        return back()->with('info','Usted no esta autorizado');
+    }
+
+    public function AddCategory(SaveProductCategoryRequest $request)
+    {
+        if($request->user()->autorize(1))
+        {
+            $category = new Category();
+            $category->fill($request->all());
+            $category->save();
+            return back()->with('info','Se agregó una nueva categoría');
+        }
+        return back()->with('info','Usted no esta autorizado');
+    }
+
+    public function editCategoryView(Request $request,$id)
+    {
+        if($request->user()->autorize([1,3]))
+        {
+            $category = Category::findOrFail($id);
+            return view('admin.category-edit',compact('category'));
+        }
+        return back()->with('info','Usted no esta autorizado');
+    }
+
+    public function editedCategory(SaveProductCategoryRequest $request,$id)
+    {
+        if($request->user()->autorize([1,3]))
+        {
+            $category = Category::findOrFail($id);
+            $category->category=$request->input('category');
+            $category->save();
+            return redirect()->route('admin.categories.view')->with('info','Se actualizó una categoría');
+        }
+        return back()->with('info','Usted no esta autorizado');
+    }
+
+    public function deleteCategory(Request $request,$id)
+    {
+        if($request->user()->autorize(1))
+        {
+            $category = Category::findOrFail($id);
+            $category->delete();
+            return redirect()->route('admin.categories.view')->with('info','Se eliminó una categoría');
+        }
+        return back()->with('info','Usted no esta autorizado');
+    }
+    
 }
