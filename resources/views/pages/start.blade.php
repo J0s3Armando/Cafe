@@ -9,15 +9,22 @@
     <div class="col-lg-10 col-md-12">
       <div id="carouselControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner w-100">
-          @foreach ($carousels as $carousel)
-            <div class="carousel-item active w-100 h-100">
-              <img src="{{asset($carousel->image)}}" class="d-block w-100" alt="{{$carousel->title}}">
-              <div class="carousel-caption  d-block">
-                <h5>{{$carousel->title}}</h5>
-                <p>{{$carousel->description}}</p>
-              </div>
+         
+           @for ($i = 0; $i <count($carousels); $i++)
+              @if ($i==0)
+                <div class="carousel-item active w-100 h-100"> 
+              @else
+                <div class="carousel-item w-100 h-100"> 
+              @endif
+                <img src="{{asset($carousels[$i]['image'])}}" class="d-block w-100" alt="">
+                <div class="carousel-caption  d-block">
+                  <h5>{{$carousels[$i]['title']}}</h5>
+                  <p>{{$carousels[$i]['description']}}</p>
+                </div>
             </div>
-          @endforeach       
+               
+           @endfor
+                 
         </div>
         <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -54,7 +61,7 @@
             @foreach ($products as $product)
               <div class="mx-1">
                 <div class="card">
-                  <img src="{{ asset($product->image) }}" class="card-img-top" alt="...">
+                  <img src="{{ asset($product->image) }}" class="card-img-top">
                   <div class="card-body">
                     <p class="card-title h6 mb-0">${{$product->price}} MXN</p>
                     <p class="card-text  text-muted">{{$product->description}}</p>

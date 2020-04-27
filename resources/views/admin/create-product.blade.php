@@ -47,6 +47,29 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="wholesale_price" class="col-md-4 col-form-label text-md-right">Precio al mayoreo</label>
+                                <div class="col-md-6">
+                                    <input type="number" placeholder="00.00" min="1" name="wholesale_price" id="wholesale_price" step=".10" class="form-control @error('wholesale_price') is-invalid @enderror" value="{{old('wholesale_price')}}" autocomplete="wholesale_price">
+                                    @error('wholesale_price')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="quantity_wholesale_price" class="col-md-4 col-form-label text-md-right">Aplicable al mayoreo</label>
+                                <div class="col-md-6">
+                                    <input type="number" placeholder="00" min="2" name="quantity_wholesale_price" id="quantity_wholesale_price" class="form-control @error('quantity_wholesale_price') is-invalid @enderror" value="{{old('quantity_wholesale_price')}}" autocomplete="quantity_wholesale_price">
+                                    @error('quantity_wholesale_price')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
                                 <label for="stock" class="col-md-4 col-form-label text-md-right">Existencias</label>
                                 <div class="col-md-6">
                                     <input type="number" placeholder="00" min="1" name="stock" id="stock" class="form-control @error('stock') is-invalid @enderror" value="{{old('stock')}}" required autocomplete="stock">
@@ -61,7 +84,7 @@
                             <div class="form-group row">
                                 <label for="long_description" class="col-md-4 col-form-label text-md-right">Descripción</label>
                                 <div class="col-md-6">
-                                    <textarea required  style="min-height:100px; height:100px; max-height:300px;" name="long_description" minlength="fa-rotate-180" placeholder="Agrega una descripción al producto para tus clientes" id="long_description" class="form-control @error('long_description') is-invalid @enderror" autocomplete="long_description" autofocus >{{old('long_description')}}</textarea>
+                                    <textarea required  style="min-height:100px; height:100px; max-height:300px;" name="long_description" minlength="10" placeholder="Agrega una descripción al producto para tus clientes" id="long_description" class="form-control @error('long_description') is-invalid @enderror" autocomplete="long_description" autofocus >{{old('long_description')}}</textarea>
                                     @error('long_description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -75,10 +98,30 @@
                                     <select name="id_categories"  id="category" class="custom-select @error('id_categories') is-invalid @enderror" required  autofocus autocomplete="category">
                                         <option disabled selected>Seleccione una categoría</option>
                                        @foreach ($categories as $category)
-                                           <option value="{{$category->id}}">{{$category->category}}</option>
+                                           <option value="{{$category->id}}">{{$category->category}}
+                                            @if (!is_null($category->id_SubCategory))
+                                                - {{$category->Subcategory->description}}    
+                                            @endif
+                                        </option>
                                        @endforeach
                                     </select>
                                     @error('id_categories')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="id_units" class="col-md-4 col-form-label text-md-right">Unidad</label>
+                                <div class="col-md-6">                     
+                                    <select name="id_units"  id="id_units" class="custom-select @error('id_units') is-invalid @enderror" required  autofocus autocomplete="id_units">
+                                        <option disabled selected>Seleccione una unidad</option>
+                                       @foreach ($units as $unit)
+                                           <option value="{{$unit->id}}">{{$unit->description}}</option>
+                                       @endforeach
+                                    </select>
+                                    @error('id_units')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -115,36 +158,5 @@
             </div>
         </div>
     </section>
-
-    <!-- pendiente por revisar -->
-    <script>
-        document.getElementById('image').onchange=function(e){
-            var files = e.target.files;
-            var type = files[0].type;
-            var preview = document.getElementById('preview');
-            var lblNameFile = document.getElementById('lblNameFile');
-            lblNameFile.innerHTML=files[0].name;
-            preview.innerHTML='';
-            if(type.match("image/*"))
-            {    
-                var reader = new FileReader();
-                reader.readAsDataURL(e.target.files[0]);
-                reader.onload=function()
-                {
-                    var image = document.createElement('img');
-                    image.classList="img-fluid w-100";
-                    image.src=reader.result;
-                    preview.appendChild(image);
-                };              
-            }
-            else{
-                var messageAlert = document.createElement('div');
-                messageAlert.classList = "alert alert-danger";
-                var message = "El archivo seleccionado no cuenta con el formato requerido";
-                messageAlert.innerHTML=message;
-                preview.appendChild(messageAlert);
-            }
-        }
-      
-    </script>
+<script src="{{asset('js/form.js')}}"></script>
 @endsection

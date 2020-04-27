@@ -61,4 +61,3 @@ function createContainerMap(url, hour)
   container.innerHTML = hour +  url;
   return container;
 }
-

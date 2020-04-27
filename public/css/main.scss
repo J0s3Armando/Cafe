@@ -59,17 +59,15 @@ body{
     }
 }
 
-@media screen and (max-width:780px)
+@media screen and (max-width:988px)
 {
   body{
     .container{
-      .card{
         table{
           .hidden{
             display: none !important;
           }
-        }
-      }
+        } 
     }
   }
 }

@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Throwable;
@@ -54,12 +55,16 @@ class Handler extends ExceptionHandler
     {
         if($exception instanceof ModelNotFoundException)
         {
-            return redirect()->route('index')->with('info','Parámetros no válidos');
+            return back();
         }
         elseif($exception instanceof MethodNotAllowedHttpException)
         {
-            return redirect()->route('index');
+            return back();
         }
+       // elseif($exception instanceof QueryException)
+        //{
+         //   return back()->with('info','No se puede eliminar este registro, porque está en uso.');
+       // }
         return parent::render($request, $exception);
     }
 }
