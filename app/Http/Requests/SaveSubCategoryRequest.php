@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class changeImagaProductResquest extends FormRequest
+class SaveSubCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,15 @@ class changeImagaProductResquest extends FormRequest
     public function rules()
     {
         return [
-            'image'=> 'required|image|max:2048',
+            'description' => 'required|string|min:3|max:50',
         ];
     }
-
     public function messages()
     {
         return [
-            'image.required'=>'Debes seleccionar una imágen al producto',
-            'image.image'=>'Asegúrese que el archivo séa una imágen',
-            'image.max'=>'Tamaño máximo de la imágen es 2MB',
+            'description.required' => 'El campo subcategoría es obligatorio',
+            'description.min' => 'La descripción es muy corto',
+            'description.max' => 'La descripción es muy largo',
         ];
     }
 }

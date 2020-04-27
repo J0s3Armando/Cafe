@@ -29,8 +29,8 @@ body .jumbotron .hour {
 @media screen and (max-width: 838px) {
   body .container .popular .right, body .container .popular .left {
     display: none; } }
-@media screen and (max-width: 988px) {
-  body .container table .hidden {
+@media screen and (max-width: 780px) {
+  body .container .card table .hidden {
     display: none !important; } }
 @media screen and (max-width: 1000px) {
   body .container .carousel .carousel-inner {
@@ -42,4 +42,4 @@ body .jumbotron .hour {
   body .container .carousel .carousel-inner {
     height: 300px; } }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=:style.css.map */

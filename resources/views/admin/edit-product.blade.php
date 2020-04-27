@@ -11,8 +11,9 @@
                         <p class="mb-0">Editar producto producto</p>
                     </div>
                     <div class="card-body">
-                        <form action="" enctype="multipart/form-data" method="POST">
+                        <form id="idForm" action="{{route('admin.editProduct',$product->id)}}" enctype="multipart/form-data" method="POST">
                             @csrf
+                            @method('put')
                             <div class="form-group row">
                                 <label for="description" class="col-md-4 col-form-label text-md-right">Producto</label>
                                 <div class="col-md-6">
@@ -40,6 +41,31 @@
                                 <div class="col-md-6">
                                     <input type="number" placeholder="00.00" min="1" name="price" id="price" step=".10" class="form-control @error('price') is-invalid @enderror" value="{{old('price',$product->price)}}" required autocomplete="price">
                                     @error('price')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="wholesale_price" class="col-md-4 col-form-label text-md-right">Precio al mayoreo</label>
+                                <div class="col-md-6">
+                                    <input type="number" placeholder="00.00" min="1" name="wholesale_price" id="wholesale_price" step=".10" class="form-control @error('wholesale_price') is-invalid @enderror"
+                                     value="{{old('wholesale_price',$product->wholesale_price)}}" autocomplete="wholesale_price">
+                                    @error('wholesale_price')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="quantity_wholesale_price" class="col-md-4 col-form-label text-md-right">Aplicable al mayoreo</label>
+                                <div class="col-md-6">
+                                    <input type="number" placeholder="00" min="2" name="quantity_wholesale_price" id="quantity_wholesale_price" 
+                                    class="form-control @error('quantity_wholesale_price') is-invalid @enderror"
+                                     value="{{old('quantity_wholesale_price',$product->quantity_wholesale_price)}}" autocomplete="quantity_wholesale_price">
+                                    @error('quantity_wholesale_price')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -75,9 +101,17 @@
                                     <select name="id_categories"  id="category" class="custom-select @error('id_categories') is-invalid @enderror" required  autofocus autocomplete="category">
                                        @foreach ($categories as $category)
                                             @if ($category->id == $product->id_categories)
-                                                 <option value="{{$category->id}}">{{$category->category}}</option>
+                                                 <option selected value="{{$category->id}}">{{$category->category}}
+                                                    @if (!is_null($category->id_SubCategory))
+                                                        - {{$category->Subcategory->description}}    
+                                                    @endif
+                                                </option>
                                             @else
-                                                <option value="{{$category->id}}">{{$category->category}}</option>
+                                                <option value="{{$category->id}}">{{$category->category}}
+                                                    @if (!is_null($category->id_SubCategory))
+                                                        - {{$category->Subcategory->description}}    
+                                                    @endif
+                                                </option>
                                             @endif       
                                        @endforeach
                                     </select>
@@ -87,12 +121,31 @@
                                         </span>
                                     @enderror
                                 </div>
-                            </div>  
+                            </div>
+                            <div class="form-group row">
+                                <label for="id_units" class="col-md-4 col-form-label text-md-right">Unidad</label>
+                                <div class="col-md-6">                     
+                                    <select name="id_units"  id="id_units" class="custom-select @error('id_units') is-invalid @enderror" required  autofocus autocomplete="id_units">
+                                       @foreach ($units as $unit)
+                                            @if ($product->id_units == $unit->id)
+                                                <option value="{{$unit->id}}" selected>{{$unit->description}}</option>
+                                            @else
+                                                <option value="{{$unit->id}}">{{$unit->description}}</option>
+                                            @endif
+                                       @endforeach
+                                    </select>
+                                    @error('id_units')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label for="image" class="col-md-4 col-form-label text-md-right">Imágen</label>
                                 <div class="col-md-6">
                                     <div class="custom-file">
-                                        <input type="file" name="image" id="image" class="custom-file-input @error('image') is-invalid @enderror" required autofocus  accept="image/*" />
+                                        <input type="file" name="image" id="image" class="custom-file-input @error('image') is-invalid @enderror" autofocus  accept="image/*" />
                                         <label for="image" class="custom-file-label" id="lblNameFile" >Selecciona una imágen</label>
                                         @error('image')
                                             <span class="invalid-feedback" role="alert">
@@ -104,7 +157,7 @@
                             </div>                        
                             <div class="form-group row mt-4  justify-content-center d-flex">                           
                                 <div class="col-md-6 justify-content-center d-flex">
-                                   <input type="submit" value="Actualizar" class="btn btn-success">
+                                   <input disabled type="submit" id="btnForm" value="Actualizar" class="btn btn-success">
                                 </div>
                             </div>
                         </form>
@@ -118,36 +171,5 @@
             </div>
         </div>
     </section>
-
-    <!-- pendiente por revisar -->
-    <script>
-        document.getElementById('image').onchange=function(e){
-            var files = e.target.files;
-            var type = files[0].type;
-            var preview = document.getElementById('preview');
-            var lblNameFile = document.getElementById('lblNameFile');
-            lblNameFile.innerHTML=files[0].name;
-            preview.innerHTML='';
-            if(type.match("image/*"))
-            {    
-                var reader = new FileReader();
-                reader.readAsDataURL(e.target.files[0]);
-                reader.onload=function()
-                {
-                    var image = document.createElement('img');
-                    image.classList="img-fluid w-100";
-                    image.src=reader.result;
-                    preview.appendChild(image);
-                };              
-            }
-            else{
-                var messageAlert = document.createElement('div');
-                messageAlert.classList = "alert alert-danger";
-                var message = "El archivo seleccionado no cuenta con el formato requerido";
-                messageAlert.innerHTML=message;
-                preview.appendChild(messageAlert);
-            }
-        }
-      
-    </script>
+    <script src="{{asset('js/form.js')}}"></script>
 @endsection
