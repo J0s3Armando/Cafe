@@ -3,11 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Carousel extends Model
 {
     //
-    protected $fillable = [
+    use SoftDeletes;
+     protected $fillable = [
      'title','description','image',
     ];
+
 }

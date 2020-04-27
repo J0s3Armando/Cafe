@@ -6,11 +6,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
-
+    use SoftDeletes;
     public function autorize($roles)
     {
        if( $this->hasAnyRoles($roles))
@@ -52,6 +53,11 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsTo(Role::class,'idRole');
+    }
+
+    public function Orders()
+    {
+        return $this->hasMany(Order::class,'id_user');
     }
     /**
      * The attributes that are mass assignable.

@@ -47,6 +47,8 @@ Route::get('/panel/admin/crate-user','AdminController@createUserView')->name('ad
 
 Route::post('/panel/admin/new-user','AdminController@newUser')->name('admin.new.user');
 
+Route::get('/panel/admin/{id}/movements','AdminController@userMovements')->name('admin.user.movements');
+
 Route::delete('/panel/admin/user/{id}/delete','AdminController@deleteUser')->name('admin.delete.user');
 
 Route::get('/panel/admin/carousel','AdminController@carouselViewPanel')->name('admin.carousel.view');
@@ -70,3 +72,25 @@ Route::get('/panel/admin/{id}/category','AdminController@editCategoryView')->nam
 Route::put('/panel/admin/{id}/category','AdminController@editedCategory')->name('admin.edited.category');
 
 Route::delete('/panel/admin/{id}/category','AdminController@deleteCategory')->name('admin.delete.category');
+
+Route::post('/panel/admin/subcategory','AdminController@addSubcategory')->name('admin.add.subcategory');
+
+Route::get('/panel/admin/{id}/subcategory','AdminController@editSubcategory')->name('admin.edit.subCategory');
+
+Route::put('/panel/admin/{id}/subcategory','AdminController@editedSubcategory')->name('admin.edited.subCategory');
+
+Route::delete('/panel/admin/{id}/subcategory','AdminController@deleteSubcategory')->name('admin.delete.subCategory');
+
+Route::get('/panel/admin/units','AdminController@unitsView')->name('admin.units.view');
+
+Route::post('/panel/admin/add-unit','AdminController@addUnit')->name('admin.add.unit');
+
+Route::get('/panel/admin/{id}/edit-unit','AdminController@editUnit')->name('admin.edit.unit');
+
+Route::put('/panel/admin/{id}/edit-unit','AdminController@editedUnit')->name('admin.edited.unit');
+
+Route::delete('/panel/admin/{id}/delete-unit','AdminController@deleteUnit')->name('admin.delete.unit');
+
+Route::get('/panel/admin/orders','AdminController@ordersView')->name('admin.orders.view');
+
+Route::put('/panel/admin/{id}/sended','AdminController@orderSended')->name('admin.order.sended');

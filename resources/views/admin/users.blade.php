@@ -118,6 +118,9 @@
                                         </div>
                                         </div>
                                     </div>
+                                    @if (Auth::user()->autorize([1,3]))
+                                        <a href="{{route('admin.user.movements',$user->id)}}" class="btn btn-success"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> <span class="hidden">Compras</span></a>
+                                    @endif
                                     @if (Auth::user()->autorize(1))
                                         <button  class="btn  btn-danger" data-toggle="modal" data-target="#delete_{{$user->id}}"><i class="fa fa-trash" aria-hidden="true"></i>
                                             <span class="hidden">Eliminar</span></button>
@@ -132,14 +135,14 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     ¿Está seguro de que desea eliminar a este usuario?
-                                                    <form action="{{route('admin.delete.user',$user->id)}}" id="product_{{$user->id}}" hidden method="POST">
+                                                    <form action="{{route('admin.delete.user',$user->id)}}" id="userDelete_{{$user->id}}" hidden method="POST">
                                                         @csrf
                                                         @method('delete')
                                                     </form>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                                    <a href="javascript:document.getElementById('product_{{$user->id}}').submit()" class="btn btn-success">Sí, eliminar</a>
+                                                    <a href="javascript:document.getElementById('userDelete_{{$user->id}}').submit()" class="btn btn-success">Sí, eliminar</a>
                                                 </div>
                                                 </div>
                                             </div>

@@ -69,7 +69,7 @@
                             </div>
                         </div> 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">email</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">Correo electrónico</label>
                             <div class="col-md-6">
                                 <input type="email" placeholder="example@example.com" name="email" value="{{old('email')}}" minlength="8" class="form-control @error('email') is-invalid @enderror" id="email"  autocomplete="email" autofocus>
                                 @error('email')

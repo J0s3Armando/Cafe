@@ -19,6 +19,7 @@ class CreateCarouselsTable extends Migration
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -31,6 +31,30 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="id_SubCategory" class="col-md-12 col-form-label text-md-center">Seleccione una subcategoría</label>
+                                <div class="col-md-12">    
+                                    <select name="id_SubCategory" class="form-control" id="id_SubCategory">
+                                        @if ($category->id_SubCategory == null)
+                                            <option value="" selected disabled>Sin valor</option>
+                                        @else   
+                                            <option value="">Sin valor</option>
+                                        @endif
+                                        @foreach ($subCategories as $subCategory)
+                                            @if ($category->id_SubCategory == $subCategory->id)
+                                                 <option value="{{$subCategory->id}}" selected>{{$subCategory->description}}</option>
+                                            @else 
+                                                <option value="{{$subCategory->id}}">{{$subCategory->description}}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    @error('id_SubCategory')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="form-group row mt-4  justify-content-center d-flex">                           
                                 <div class="col-md-6 justify-content-center d-flex">
                                 <input type="submit" value="Agregar" disabled="true" id="btnCategory" class="btn btn-success">

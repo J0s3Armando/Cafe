@@ -8,12 +8,14 @@
             <div class="col-12 my-4">
                 <p class="text-center h4">Bienvenido {{Auth::user()->name}}</p>
                 <div class="d-flex justify-content-center flex-wrap">
+                    <a href="{{route('admin.units.view')}}" class="btn btn-primary m-1">Unidades del producto</a>
                     @if (Auth::user()->autorize(1))
-                        <a href="{{route('panel.admin.create-product')}}" class="btn btn-primary m-1">Agregar producto</a>
+                    <a href="{{route('panel.admin.create-product')}}" class="btn btn-primary m-1">Agregar producto</a>
                     @endif
                     <a href="{{route('admin.users')}}" class="btn btn-primary m-1">usuarios</a>
                     <a href="{{route('admin.carousel.view')}}" class="btn btn-primary m-1">Carrusel de imágenes</a>
                     <a href="{{route('admin.categories.view')}}" class="btn btn-primary m-1">Categorías</a>
+                    <a href="{{route('admin.orders.view')}}" class="btn btn-primary m-1">Pedidos</a>
                 </div>
             </div>
         </div>
@@ -76,28 +78,48 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td>Stock</td>
-                                                                        <td>{{$product->stock}}</td>
+                                                                        <td class="align-middle">Stock</td>
+                                                                        <td class="align-middle">{{$product->stock}}</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td>Código</td>
-                                                                        <td>{{$product->code}}</td>
+                                                                        <td class="align-middle">Código</td>
+                                                                        <td class="align-middle">{{$product->code}}</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td>Precio</td>
-                                                                        <td>{{$product->price}}</td>
+                                                                        <td class="align-middle">Precio</td>
+                                                                        <td class="align-middle">{{$product->price}}</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td>Categoría</td>
-                                                                        <td>{{$product->categories->category}}</td>
+                                                                        <td class="align-middle">Precio al mayoreo</td>
+                                                                        <td class="align-middle">
+                                                                            @if ($product->wholesale_price !=null)
+                                                                                {{$product->wholesale_price}}
+                                                                            @else
+                                                                                -----
+                                                                            @endif
+                                                                        </td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td>Descripción</td>
-                                                                        <td> {{$product->long_description}}</td>
+                                                                        <td class="align-middle">Aplicable al mayoreo</td>
+                                                                        <td class="align-middle"> 
+                                                                            @if ($product->quantity_wholesale_price !=null)
+                                                                                {{$product->quantity_wholesale_price}}
+                                                                            @else
+                                                                                -----
+                                                                            @endif
+                                                                        </td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td>Imágen</td>
-                                                                        <td>
+                                                                        <td class="align-middle">Categoría</td>
+                                                                        <td class="align-middle">{{$product->categories->category}}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="align-middle">Descripción</td>
+                                                                        <td class="align-middle">{{$product->long_description}}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="align-middle">Imágen</td>
+                                                                        <td class="align-middle">
                                                                             <img src="{{asset($product->image)}}" class="img-fluid w-100" alt="">
                                                                         </td>
                                                                     </tr>

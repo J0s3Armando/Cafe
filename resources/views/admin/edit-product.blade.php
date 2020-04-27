@@ -48,6 +48,31 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="wholesale_price" class="col-md-4 col-form-label text-md-right">Precio al mayoreo</label>
+                                <div class="col-md-6">
+                                    <input type="number" placeholder="00.00" min="1" name="wholesale_price" id="wholesale_price" step=".10" class="form-control @error('wholesale_price') is-invalid @enderror"
+                                     value="{{old('wholesale_price',$product->wholesale_price)}}" autocomplete="wholesale_price">
+                                    @error('wholesale_price')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="quantity_wholesale_price" class="col-md-4 col-form-label text-md-right">Aplicable al mayoreo</label>
+                                <div class="col-md-6">
+                                    <input type="number" placeholder="00" min="2" name="quantity_wholesale_price" id="quantity_wholesale_price" 
+                                    class="form-control @error('quantity_wholesale_price') is-invalid @enderror"
+                                     value="{{old('quantity_wholesale_price',$product->quantity_wholesale_price)}}" autocomplete="quantity_wholesale_price">
+                                    @error('quantity_wholesale_price')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="stock" class="col-md-4 col-form-label text-md-right">Existencias</label>
                                 <div class="col-md-6">
                                     <input type="number" placeholder="00" min="1" name="stock" id="stock" class="form-control @error('stock') is-invalid @enderror" value="{{old('stock',$product->stock)}}" required autocomplete="stock">
@@ -76,9 +101,17 @@
                                     <select name="id_categories"  id="category" class="custom-select @error('id_categories') is-invalid @enderror" required  autofocus autocomplete="category">
                                        @foreach ($categories as $category)
                                             @if ($category->id == $product->id_categories)
-                                                 <option value="{{$category->id}}">{{$category->category}}</option>
+                                                 <option selected value="{{$category->id}}">{{$category->category}}
+                                                    @if (!is_null($category->id_SubCategory))
+                                                        - {{$category->Subcategory->description}}    
+                                                    @endif
+                                                </option>
                                             @else
-                                                <option value="{{$category->id}}">{{$category->category}}</option>
+                                                <option value="{{$category->id}}">{{$category->category}}
+                                                    @if (!is_null($category->id_SubCategory))
+                                                        - {{$category->Subcategory->description}}    
+                                                    @endif
+                                                </option>
                                             @endif       
                                        @endforeach
                                     </select>
@@ -88,7 +121,26 @@
                                         </span>
                                     @enderror
                                 </div>
-                            </div>  
+                            </div>
+                            <div class="form-group row">
+                                <label for="id_units" class="col-md-4 col-form-label text-md-right">Unidad</label>
+                                <div class="col-md-6">                     
+                                    <select name="id_units"  id="id_units" class="custom-select @error('id_units') is-invalid @enderror" required  autofocus autocomplete="id_units">
+                                       @foreach ($units as $unit)
+                                            @if ($product->id_units == $unit->id)
+                                                <option value="{{$unit->id}}" selected>{{$unit->description}}</option>
+                                            @else
+                                                <option value="{{$unit->id}}">{{$unit->description}}</option>
+                                            @endif
+                                       @endforeach
+                                    </select>
+                                    @error('id_units')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label for="image" class="col-md-4 col-form-label text-md-right">Imágen</label>
                                 <div class="col-md-6">
