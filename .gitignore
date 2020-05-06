@@ -1,7 +1,7 @@
 /node_modules
 /public/hot
-/public/img/carousel
-/public/img/categories
+/public/img/carousel/*.jpg
+/public/img/categories/*.jpg
 /public/storage
 /storage/*.key
 /vendor
