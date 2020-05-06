@@ -8,7 +8,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <p class="mb-0">Agregar nuevo imágen al carrusel</p>
+                    <p class="mb-0">Agregar nueva imágen al carrusel</p>
                 </div>
                 <div class="card-body">
                     <form action="{{route('admin.addNewImageToCarousel')}}" enctype="multipart/form-data"  method="POST">
@@ -51,7 +51,7 @@
                         </div> 
                         <div class="form-group row mt-4  justify-content-center d-flex">                           
                             <div class="col-md-6 justify-content-center d-flex">
-                               <input type="submit" value="Agregar" class="btn btn-success">
+                               <input type="submit" value="Agregar" class="btn btn-muk-cafe">
                             </div>
                         </div>
                     </form>

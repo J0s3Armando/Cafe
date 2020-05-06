@@ -24,7 +24,7 @@ class EditProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'description' =>'required|min:20|max:35',
+            'description' =>'required|min:5|max:35',
             'price'=>'required|min:1|numeric',
             'wholesale_price'=>'nullable|min:1|numeric',
             'quantity_wholesale_price'=>'nullable|min:2|max:99|integer',
@@ -41,7 +41,7 @@ class EditProductRequest extends FormRequest
         return [
             'description.required' => 'Debes colocar un nombre al producto',
             'description.max'=>'La description debe ser menor a 35 caracteres',
-            'description.min'=>'Este campo debe contar 20 caracteres como mínimo',
+            'description.min'=>'Este campo debe contar 5 caracteres como mínimo',
             'price.required'=>'Debes colocar un precio',
             'price.numeric'=>'Sólo se acepta números',
             'wholesale_price.min'=>'Sólo números mayores a 1',

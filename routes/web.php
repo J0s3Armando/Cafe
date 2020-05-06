@@ -1,26 +1,51 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use illuminate\Http\Request;
 use App\Product;
-use App\Carousel;
-use App\Category;
+use App\Image;
 
 Route::get('/', function () {
-    $products = Product::limit(8)->get();
-    $carousels = Carousel::all();
+    $products = Product::inRandomOrder()->limit(5)->get();
+    $carousels = Image::where('type',Image::CARROUSEL)->get();
     return view('pages.start',compact(['products','carousels']));
 })->name('index');
 
+//about us
+Route::get('/about',function()
+{
+    return view('pages.about');
+}
+)->name('aboutUs');
+
 //products Area
+Route::get('/products','ProductController@showAllProducts')->name('show.all.products');
 
-Route::get('/product/{id}','ProductController@productInfo')->name('product.info');
+Route::get('/product/{id}/info','ProductController@productInfo')->name('product.info');
 
+//orders area
+
+Route::get('/orders','OrderController@ordersView')->name('orders');
+
+Route::get('/order/new','OrderController@createOrder')->name('new.order');
+
+Route::get('order/{id}/list/products','OrderController@userListOrder')->name('user.list.order');
 //user area
 
 Route::get('/profile','HomeController@userProfile')->name('profile');
 
-Route::get('/myshopping','HomeController@userShopping')->name('shopping');
+Route::get('/profile/update','HomeController@updateUserData')->name('user.update.data');
+
+Route::post('/product/add-cart','CartController@addCart')->name('add.product.cart');
+
+Route::get('/product/cart/clear','CartController@clearCart')->name('clear.cart');
+
+Route::put('/product/cart/{id}/change','CartController@changeQuantityCart')->name('update.qty.prod.cart');
+
+Route::get('/product/cart/detail','CartController@cartDetail')->name('cart.detail');
+
+Route::post('/product/cart/{id}/drop','CartController@cartDropItem')->name('cart.drop.item');
+
+Route::get('/cart','CartController@cardShow')->name('cart');
 
 //autentication routes
 
@@ -94,3 +119,5 @@ Route::delete('/panel/admin/{id}/delete-unit','AdminController@deleteUnit')->nam
 Route::get('/panel/admin/orders','AdminController@ordersView')->name('admin.orders.view');
 
 Route::put('/panel/admin/{id}/sended','AdminController@orderSended')->name('admin.order.sended');
+
+Route::get('/panel/admin/{id}/list','AdminController@listOrder')->name('admin.list.order');

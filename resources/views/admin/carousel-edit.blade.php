@@ -52,7 +52,7 @@
                         </div> 
                         <div class="form-group row mt-4  justify-content-center d-flex">                           
                             <div class="col-md-6 justify-content-center d-flex">
-                               <input type="submit" disabled="true" id="btnForm" value="Agregar" class="btn btn-success">
+                               <input type="submit" disabled="true" id="btnForm" value="Agregar" class="btn btn-muk-cafe">
                             </div>
                         </div>
                     </form>
@@ -66,6 +66,7 @@
         </div>
     </div>
 </section>
-
-<script src="{{asset('js/form.js')}}"></script>
 @endsection 
+@section('scripts')
+    <script src="{{asset('js/form.js')}}"></script>
+@endsection

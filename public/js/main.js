@@ -24,6 +24,18 @@ function slideLeft()
   scrollbar.scrollLeft -=60;
 }
 
+function slideRightGalery()
+{
+    var scrollbar = document.getElementById('galery');
+      scrollbar.scrollLeft +=100;
+}
+
+function slideLeftGalery()
+{
+  var scrollbar = document.getElementById('galery');
+  scrollbar.scrollLeft -=100;
+}
+
 local1.addEventListener('click',function(){
   var hour = '<p class="h4">Horario</p><span class="btn mx-1 btn-sm mb-2 hour">Lunes a martes - 11:00 am a 9:00 pm</span>'+'<span class="btn mx-1 hour btn-sm mb-2 ">Miércoles a sábado - 11:00 am a 10:00 pm</span>' + '<span class="btn mx-1 hour btn-sm mb-2 ">Domingo - 9:00 am a 11:00 pm</span>'
   ;

@@ -57,7 +57,7 @@
                             </div>
                             <div class="form-group row mt-4  justify-content-center d-flex">                           
                                 <div class="col-md-6 justify-content-center d-flex">
-                                <input type="submit" value="Agregar" disabled="true" id="btnCategory" class="btn btn-success">
+                                <input type="submit" value="Agregar" disabled="true" id="btnCategory" class="btn btn-muk-cafe">
                                 </div>
                             </div>
                        </form>
@@ -66,6 +66,8 @@
             </div>
         </div>
     </section>
+@endsection
+@section('scripts') 
     <script>
         document.getElementById('formCategory').onchange=function(e)
         {

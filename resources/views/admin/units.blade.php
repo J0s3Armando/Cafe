@@ -9,7 +9,7 @@
             <p class="text-center h4">Administre las unidades de los productos</p>                           
                 @if (Auth::user()->autorize(1)) 
                 <p class="text-center">
-                    <button class="btn btn-primary m-1" type="button" data-toggle="collapse" data-target="#unitCollapse" aria-expanded="false" aria-controls="unitCollapse">Agregar Unidades</button>
+                    <button class="btn btn-muk-cafe-active m-1" type="button" data-toggle="collapse" data-target="#unitCollapse" aria-expanded="false" aria-controls="unitCollapse">Agregar Unidades</button>
                 </p>
                 <div class="row">
                     <div class="col-12">
@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="form-group row mt-4  justify-content-center d-flex">                           
                                         <div class="col-md-6 justify-content-center d-flex">
-                                        <input type="submit" value="Agregar" disabled="true" id="btnUnit" class="btn btn-success">
+                                        <input type="submit" value="Agregar" disabled="true" id="btnUnit" class="btn btn-muk-cafe">
                                         </div>
                                     </div>
                                 </form>
@@ -61,23 +61,21 @@
             <table class="table table-sm table-striped table-hover table-borderless">
                 <thead class="text-center">
                     <tr>
-                        <th>Id</th>
-                        <th>Descripción</th>
-                        <th class="hidden">Fecha de registro</th>
-                        <th>Opciones</th>
+                        <th>DESCRIPCIÓN</th>
+                        <th class="hidden">CREADO EN</th>
+                        <th>OPCIONES</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
                     @foreach ($units as $unit)
                         <tr>
-                            <td class="align-middle">{{$unit->id}}</td>
                             <td class="align-middle">{{$unit->description}}</td>
-                            <td class="align-middle hidden">{{$unit->created_at}}</td>
+                            <td class="align-middle hidden">{{$unit->created_at->format('d/m/Y H:m A')}}</td>
                             <td>
-                                <a href="{{route('admin.edit.unit',$unit->id)}}" class="btn btn-warning my-1"><i class="fa fa-pencil" aria-hidden="true"></i>
+                                <a href="{{route('admin.edit.unit',$unit->id)}}" class="btn btn-muk-cafe my-1"><i class="fa fa-pencil" aria-hidden="true"></i>
                                 <span class="hidden">Editar</span></a>
                                 @if (Auth::user()->autorize(1))
-                                    <button  class="btn  btn-danger" data-toggle="modal" data-target="#deleteUnit_{{$unit->id}}"><i class="fa fa-trash" aria-hidden="true"></i>
+                                    <button  class="btn  btn-outline-danger" data-toggle="modal" data-target="#deleteUnit_{{$unit->id}}"><i class="fa fa-trash" aria-hidden="true"></i>
                                         <span class="hidden">Eliminar</span></button>
                                     <div class="modal fade" id="deleteUnit_{{$unit->id}}" tabindex="-1" role="dialog" aria-labelledby="moreDeleteUnit{{$unit->id}}" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -96,8 +94,8 @@
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                                <a href="javascript:document.getElementById('unit_{{$unit->id}}').submit()" class="btn btn-success">Sí, eliminar</a>
+                                                <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+                                                <a href="javascript:document.getElementById('unit_{{$unit->id}}').submit()" class="btn btn-danger">Sí, eliminar</a>
                                             </div>
                                             </div>
                                         </div>

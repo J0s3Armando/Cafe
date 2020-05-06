@@ -1,3 +1,39 @@
 @import 'header';
 @import 'main';
 @import 'footer';
+
+//estos estilos se aplican  solo en el main 
+body{
+    font-family: 'Didact Gothic',Arial, Helvetica, sans-serif !important; //tipo de letra para todos exepto los titulos
+    .muk-title{
+      font-family: Orbitron,Arial, Helvetica, sans-serif !important;
+    }
+
+    .muk-color-cafe{
+      color:  rgb(68,55,38);
+    }
+
+    .muk-link-cafe{
+      color:  rgb(116, 101, 82);
+      &:hover{
+        color: rgb(46, 37, 25);;
+      }
+    }
+    .btn-muk-cafe{ //botones de registro y acceso
+      border:1px solid rgb(116, 101, 82);
+      color: rgb(116, 101, 82);
+      &:hover{
+        background:   rgb(69,56,39);
+      color: #fff;
+      }
+    }
+
+    .btn-muk-cafe-active{
+      background:  rgb(87, 71, 51),;
+      color: #fff;
+      &:hover{
+        background: rgb(68,55,38);
+        color: #fff;;
+      }
+    }
+}

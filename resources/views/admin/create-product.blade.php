@@ -8,7 +8,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <p>Agregar un nuevo producto</p>
+                        <p class="mb-0">Agregar un nuevo producto</p>
                     </div>
                     <div class="card-body">
                         <form action="{{route('panel.admin.addProduct')}}" enctype="multipart/form-data" method="POST">
@@ -144,7 +144,7 @@
                             </div>
                             <div class="form-group row mt-4  justify-content-center d-flex">                           
                                 <div class="col-md-6 justify-content-center d-flex">
-                                   <input type="submit" value="Agregar" class="btn btn-success">
+                                   <input type="submit" value="Agregar" class="btn btn-muk-cafe">
                                 </div>
                             </div>
                         </form>
@@ -158,5 +158,8 @@
             </div>
         </div>
     </section>
-<script src="{{asset('js/form.js')}}"></script>
+@endsection
+    
+@section('scripts')
+    <script src="{{asset('js/form.js')}}"></script>
 @endsection

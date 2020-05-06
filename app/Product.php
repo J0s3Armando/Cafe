@@ -25,4 +25,9 @@ class Product extends Model
     {
         return $this->belongsTo(Unit::class,'id_units');
     }
+
+    public function Orders()
+    {
+        return $this->belongsToMany(Order::class,'order_product','id_product','id_order');
+    }
 }

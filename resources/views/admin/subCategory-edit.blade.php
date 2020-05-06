@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group row mt-4  justify-content-center d-flex">                           
                             <div class="col-md-6 justify-content-center d-flex">
-                            <input type="submit" value="Agregar" disabled="true" id="btnSubCategory" class="btn btn-success">
+                            <input type="submit" value="Agregar" disabled="true" id="btnSubCategory" class="btn btn-muk-cafe">
                             </div>
                         </div>
                    </form>
@@ -42,10 +42,13 @@
         </div>
     </div>
 </section>
-<script>
-    document.getElementById('formSubCategory').onchange=function(e)
-    {
-        document.getElementById('btnSubCategory').disabled=false;
-    }
-</script>
+@endsection
+
+@section('scripts')
+    <script>
+        document.getElementById('formSubCategory').onchange=function(e)
+        {
+            document.getElementById('btnSubCategory').disabled=false;
+        }
+    </script>
 @endsection

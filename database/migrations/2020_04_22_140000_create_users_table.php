@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('last_name');
+            $table->unsignedBigInteger('state_id');
             $table->string('address');
             $table->string('cp');
             $table->string('phone');
@@ -28,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('idRole')->references('id')->on('roles');
+            $table->foreign('state_id')->references('id')->on('states');
         });
     }
 

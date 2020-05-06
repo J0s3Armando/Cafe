@@ -1,6 +1,22 @@
 body{
+  .btn-cafe{
+    color: rgba(47, 37, 29, 0.76);
+    &:hover{
+      color: rgb(47, 37, 29);
+      cursor: pointer;
+    }
+  }
 
-  
+  .btn-outline-cafe
+  {
+    border: 1px solid rgba(47, 37, 29, 0.308);
+    background: #fff;
+    color: rgba(47, 37, 29, 0.842);
+    &:hover{
+      color: #fff;
+      background: rgb(47, 37, 29);
+    }
+  }
   .container
   {
     .carousel
@@ -39,9 +55,18 @@ body{
     
     .jumbotron
     {
+      background-image:linear-gradient(to right, rgb(37, 26, 22),
+                                                    rgb(47, 37, 29) ,
+                                                    rgb(57,45,31),
+                                                    rgb(68,55,38),
+                                                    rgb(57,45,31), 
+                                                    rgb(47, 37, 29),
+                                                    rgb(37, 26, 22)
+                                                    );
+      color: rgba(255, 255, 255, 0.938);
       .hour{
-        border-bottom: solid 1px #5a2e2e;
-        color: #5a2e2e;
+        border-bottom: solid 1px #8d7878;
+        color: #fff;
       }
     }
 }

@@ -27,6 +27,7 @@ class AddNewImageRequest extends FormRequest
             'title' => 'max:100',
             'description' => 'max:200',
             'image'=>'required|max:2048|image',
+            'type'=>'required|string',
         ];
     }
 
@@ -34,6 +35,8 @@ class AddNewImageRequest extends FormRequest
     {
         return [
             'title.max' => 'El título es muy largo',
+            'type.required'=>'El campo tipo es obligatorio',
+            'type.string'=>'Tienes que seleccionar una opción',
             'description.max' => 'La descripción es muy larga',
             'image.required'=>'El campo imágen es obligatorio',
             'image.max'=>'La imágen debe ser menor a 2MB',

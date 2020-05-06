@@ -55,6 +55,11 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class,'idRole');
     }
 
+    public function State()
+    {
+        return $this->belongsTo(State::class);
+    }
+
     public function Orders()
     {
         return $this->hasMany(Order::class,'id_user');
@@ -65,7 +70,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','last_name', 'address','cp','phone','idRole','email', 'password',
+        'name','last_name','state_id','address',
+        'cp','phone','idRole','email', 'password',
     ];
 
     /**

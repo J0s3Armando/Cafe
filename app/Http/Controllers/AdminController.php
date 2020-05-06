@@ -452,7 +452,7 @@ class AdminController extends Controller
     {
         if($request->user()->autorize([1,3]))
         {
-            $orders = Order::where('status',Order::PENDING)->get();
+            $orders = Order::where('status',Order::PENDING)->paginate(10);
             return view('admin.orders-view',compact('orders'));
         }
         return back()->with('info','Usted no esta autorizado.');
@@ -462,8 +462,22 @@ class AdminController extends Controller
     {
         if($request->user()->autorize([1,3,4]))
         {
-            return $id;
+            $order = Order::findOrFail($id);
+            $order->status = Order::COMPLITED;
+            $order->save();
+            return back()->with('info','Se ha realizado el registro de la entrega');
         }
         return back()->with('info','Usted no esta autorizado.');
+    }
+
+    public function listOrder(Request $request,$id) //id order or number of order
+    {
+        if($request->user()->autorize([1,3,4]))
+        {
+            $order = Order::findOrFail($id);
+            $products = $order->Products;
+            return view('admin.list-order',compact(['products','order']));
+        }
+        return back()->with('info','Se ha realizado el registro de la entrega');
     }
 }

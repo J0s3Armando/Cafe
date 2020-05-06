@@ -157,7 +157,7 @@
                             </div>                        
                             <div class="form-group row mt-4  justify-content-center d-flex">                           
                                 <div class="col-md-6 justify-content-center d-flex">
-                                   <input disabled type="submit" id="btnForm" value="Actualizar" class="btn btn-success">
+                                   <input disabled type="submit" id="btnForm" value="Actualizar" class="btn btn-muk-cafe">
                                 </div>
                             </div>
                         </form>
@@ -171,5 +171,7 @@
             </div>
         </div>
     </section>
-    <script src="{{asset('js/form.js')}}"></script>
+@endsection
+@section('scripts')
+    <script src="{{asset('js/form.js')}}"></script>    
 @endsection

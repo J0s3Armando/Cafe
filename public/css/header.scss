@@ -1,15 +1,50 @@
 body{
     header{
-        
+        background: rgb(37, 26, 22);
         .navbar{
-            .navbar-brand{
-                color: #4e2727;
+            .logo-button{
+                font-family:Orbitron,Arial, Helvetica, sans-serif;
+                letter-spacing: 1px;
+                .sub{
+                    font-family: 'Didact Gothic',Arial, Helvetica, sans-serif;
+                    font-size: 10px;
+                    letter-spacing: normal;
+                }
+                div{
+                    text-align: center;
+                    margin: 0 2px;
+                    line-height: 12px;
+                }
             }
+            background-image:linear-gradient(to right, rgb(37, 26, 22),
+                                                    rgb(47, 37, 29) ,
+                                                    rgb(57,45,31),
+                                                    rgb(68,55,38),
+                                                    rgb(57,45,31), 
+                                                    rgb(47, 37, 29),
+                                                    rgb(37, 26, 22)
+                                                    );
             .logo{
                 width: 45px;
             }
+            color: rgb(47, 37, 29);
         }
     }
+    .muk-light{
+        color: rgba(255, 255, 255, 0.973); 
+        &:hover{
+            background:rgb(77, 62, 51);
+            color:#fff;        
+        }      
+    }
 
+    .muk-active{
+        background:rgba(77, 62, 51, 0.705);
+        color:#fff; 
+        &:hover{
+            background:rgb(77, 62, 51);
+            color:#fff;  
+        }
+    }
 }
 

@@ -17,11 +17,12 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_user');
             $table->float('subTotal');
-            $table->float('iva');
+            $table->float('send');
             $table->float('total');
+            $table->dateTime('send_at')->nullable();
+            $table->dateTime('canceled_at')->nullable();
             $table->enum('status',[Order::PENDING,Order::COMPLITED])->default(Order::PENDING);
             $table->timestamps();
-
             $table->foreign('id_user')->references('id')->on('users');
         });
     }

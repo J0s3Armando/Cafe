@@ -26,6 +26,7 @@ class AddNewUserRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'min:3', 'max:50'],
             'last_name' => ['required', 'string', 'min:8', 'max:50'],
+            'state_id' => ['required', 'integer', 'digits:1'],
             'address' => ['required', 'string', 'min:10', 'max:200'],
             'cp' => ['required', 'integer', 'digits:5'],
             'idRole' => ['required', 'integer', 'digits:1'],
@@ -53,6 +54,9 @@ class AddNewUserRequest extends FormRequest
             'idRole.required' => 'El campo tipo de usuario es obligatorio',
             'idRole.integer' => 'El campo tipo de usuario debe existir en la lista',
             'idRole.digits' => 'Debes seleccionar un tipo de usuario existente',
+            'state_id.required' => 'El campo tipo de usuario es obligatorio',
+            'state_id.integer' => 'El campo tipo de usuario debe existir en la lista',
+            'state_id.digits' => 'Debes seleccionar un tipo de usuario existente',
             'phone.required' => 'El campo teléfono es obligatorio',
             'phone.integer' => 'El campo teléfono acepta números enteros',
             'phone.digits' => 'El campo teléfono debe tener 10 dígitos',
