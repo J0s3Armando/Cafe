@@ -18,7 +18,7 @@
             </div>
          @endif
         <section class="row my-4">
-            <section class="col-12 table-responsive">
+            <section class="col-12 table-responsive-sm">
                 <table class="table table-sm table-striped table-hover table-borderless">
                     <thead class="text-center">
                         <tr>                    
@@ -119,6 +119,8 @@
                                 </div>
                                 <a href="{{route('admin.list.order',$order->id)}}" class="btn btn-muk-cafe my-1 text-center"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
                                 <span class="hidden">Listar</span></a>
+                                <a href="{{route('admin.download.order',$order->id)}}" class="btn btn-muk-cafe-active my-1"><i class="fa fa-download" aria-hidden="true"></i>
+                                    <span class="hidden">Pedido</span></a>
                                 @if ($order->status ==='PENDING')
                                     <button  class="btn  btn-success" data-toggle="modal" data-target="#order_{{$order->id}}"><i class="fa fa-handshake-o" aria-hidden="true"></i>
                                         <span class="hidden">Entregar</span>
@@ -166,8 +168,8 @@
                                                     </form>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
-                                                    <a href="javascript:document.getElementById('orderCanceled_{{$order->id}}').submit()" class="btn btn-danger">Cancelar pedido</a>
+                                                    <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
+                                                    <a href="javascript:document.getElementById('orderCanceled_{{$order->id}}').submit()" class="btn btn-danger">Si, cancelar</a>
                                                 </div>
                                             </div>
                                         </div>

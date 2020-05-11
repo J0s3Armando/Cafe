@@ -44,22 +44,20 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{route('downloadPDF',$order->id)}}" class="btn btn-success"><i class="fa fa-download" aria-hidden="true"></i>
-                                    <span class="hidden">Pago</span></a>
                                 <button type="button" class="btn btn-muk-cafe" data-toggle="modal" data-target="#more_{{$order->id}}">
                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                     <span class="hidden">
                                         Más</span>
-                                </button>
-                                <div class="modal fade" id="more_{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="more_{{$order->id}}Title" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h5 class="modal-title" id="more_{{$order->id}}Title">{{$order->user->name}} {{$order->user->last_name}}</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        </div>
+                                    </button>
+                                    <div class="modal fade" id="more_{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="more_{{$order->id}}Title" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="more_{{$order->id}}Title">{{$order->user->name}} {{$order->user->last_name}}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
                                         <div class="modal-body">
                                             <div class="container">
                                                 <div class="row">
@@ -92,7 +90,7 @@
                                                                     <td>Estado del pedido</td>
                                                                     <td>
                                                                         @if ($order->status ==='PENDING')
-                                                                            <span class="text-danger">Por entregar</span>
+                                                                        <span class="text-danger">Por entregar</span>
                                                                         @else
                                                                             <span class="text-success">Entregado</span>
                                                                         @endif
@@ -112,10 +110,12 @@
                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                                         </div>
                                     </div>
-                                    </div>
                                 </div>
-                                <a href="{{route('user.list.order',$order->id)}}" class="btn btn-muk-cafe-active my-1 text-center"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                            </div>
+                            <a href="{{route('user.list.order',$order->id)}}" class="btn btn-muk-cafe-active my-1 text-center"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
                                 <span class="hidden">Listar</span></a>
+                                <a href="{{route('downloadPDF',$order->id)}}" class="btn  btn-muk-cafe-active"><i class="fa fa-download" aria-hidden="true"></i>
+                                <span class="hidden">Pago</span></a>
                             </td>
                             </tr>
                         @endforeach

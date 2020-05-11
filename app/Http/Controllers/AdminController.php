@@ -22,6 +22,7 @@ use App\Order;
 use App\Unit;
 use App\Http\Requests\AddUnitRequest;
 use App\State;
+use Barryvdh\DomPDF\PDF;
 
 class AdminController extends Controller
 {
@@ -29,6 +30,18 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function downloadOrder(Request $request,$id)
+    {
+        if($request->user()->autorize([1,3,4]))
+        {
+            $order = Order::findOrFail($id);
+            $products = $order->Products;
+            $pdf = \PDF::loadView('admin.download-order',['products'=>$products,'order'=>$order]);
+            return $pdf->download('Pedido_'.$id.'_pendiente_'.now()->format('d-m-Y-H-i-s').'.pdf');
+        } 
+        return back()->with('info','Usted no esta autorizado');
     }
 
     public function index(Request $request)

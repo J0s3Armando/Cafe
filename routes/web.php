@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Product;
 use App\Image;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Storage;
 
 Route::get('/', function () {
     $products = Product::inRandomOrder()->limit(5)->get();
@@ -60,6 +62,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //ADMIN AREA
+Route::get('/panel/order/{id}/download','AdminController@downloadOrder')->name('admin.download.order');
+
 Route::get('/panel/admin','AdminController@index')->name('panel.admin');
 
 Route::get('/panel/admin/create-product','AdminController@createProduct')->name('panel.admin.create-product');

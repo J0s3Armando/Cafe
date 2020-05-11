@@ -29,7 +29,6 @@ class OrderController extends Controller
             $products = $order->Products;
             $pdf = \PDF::loadView('orders.order-relationPDF',['products'=>$products,'order'=>$order]);
             return $pdf->download('Pedido_'.$id.'_pago_'.now()->format('d-m-Y-H-i-s').'.pdf');
-           //return view('orders.order-relationPDF',compact(['products','order']));
         }
         return back();
     }

@@ -45,12 +45,7 @@
             text-align: center;
             margin: 20px 0px;
         }
-        
-        .thanks{
             
-            text-align: center;
-            font-size: 1.3em;
-        }
     </style>
 </head>
 <body>
@@ -60,12 +55,37 @@
                 <img src="img/logo/thumbnail_café mukulum-01.png" >
             </section>
         </section>
-        <section class="order-details">
-            <section>
-                <P>{{$order->User->name}} {{$order->User->last_name}}</P>
-                <p class="bold">N° de pedido: {{$order->id}} </p>
-                <p class="bold">Fecha: {{$order->created_at->format('d/m/Y h:i A')}}</p>
-            </section>          
+        <section>
+            <h5>Datos para el envío</h5>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pedido</th>
+                        <th>De</th>
+                        <th>A</th>
+                        <th>Contacto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>
+                                N° de pedido: {{$order->id}}
+                            </p>
+                            Fecha: {{$order->created_at->format('d/m/Y h:i A')}}
+                        </td>
+                        <td>
+                           {{$order->User->name}} {{$order->User->last_name}}
+                        </td>
+                        <td>
+                            {{$order->User->address}},{{$order->User->State->state}},CP: {{$order->User->cp}}
+                        </td>
+                        <td>
+                            {{$order->User->email}}, {{$order->User->phone}} 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
         <section class="products">
             <h5>Detalles del pedido</h5>
@@ -105,19 +125,6 @@
             <hr>
             <h4> Total a pagar: $ {{number_format($order->total,2)}} </h4>
             <hr>
-        </section>
-        <section class="bank">
-            <h4>Condiciones y forma de pago</h4>
-            <p>El pago se realizará en un plazo de 15 días</p>
-            <p>Banco santander</p>
-            <p>Cuenta: xxxx-xxxx-xxxx-xxxx</p>
-            <h4>Contacto</h4>
-            <p>Atiende - Jaime Guillén</p>
-            <p>correo@gmail.com</p>
-            <p>9617653421</p>
-        </section>
-        <section class="thanks">
-            <p>¡Gracias por su compra!</p>
         </section>
     </section>
 </body>
