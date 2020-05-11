@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'address'=>'Cambia tu domicilio',
             'cp'=>12345,
             'phone'=>'1234567890',
-            'idRole'=>2,
+            'idRole'=>1,
             'email'=>'tuCorreo@correo.es',
             'password'=>Hash::make('AdminMukulumcafe'),
         ]);

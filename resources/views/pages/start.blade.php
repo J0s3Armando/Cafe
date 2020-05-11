@@ -35,7 +35,7 @@
     </div>
   </div>
 </div> 
- 
+
  <section class="container">
    @if(session('info'))
     <div class="alert alert-success mt-3 mb-0 alert-dismissible fade show" role="alert">
@@ -58,7 +58,9 @@
             @foreach ($products as $product)
               <div class="mx-1">
                 <div class="card">
-                  <img src="{{ asset($product->image) }}" class="card-img-top">
+                  <div class="overflow-hidden w-100" style="height: 10em !important;">
+                    <img src="{{ asset($product->image) }}" class="card-img-top d-block">
+                  </div>
                   <div class="card-body">
                     <p class="card-title mb-0 small muk-color-cafe muk-title">CAFÉ<span class="font-weight-bold">MUKULUM</span></p>
                     <p class="card-text mb-1 h6">{{$product->description}}</p>
@@ -151,63 +153,37 @@
       <div id="btnLeft" onclick="slideLeftGalery()" class="left btn-cafe"><i class="fa fa-chevron-circle-left h2" aria-hidden="true"></i>
       </div>
       <div class="flex-grow-1 items mx-2" id="galery">
-        <figure class="col-md-4 col-sm-7 col-12">
-          <a href="" data-toggle="modal" data-target="#make_order">
-            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg"
-              class="img-fluid">
-          </a>
-          <div class="modal fade" id="make_order" tabindex="-1" role="dialog" aria-labelledby="make_order_title" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h5>Realizar pedido</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                  </div>
-                  <div class="modal-body">
-                      <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(117).jpg"
-                      class="img-fluid">
-                  </div>
-                  <div class="modal-footer">
-                    <div class="container">
-                      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo, quae adipisci? Voluptatem nobis id iste 
-                        aliquam expedit.</p>
+        @foreach ($galeries as $galery)
+            <div class="mx-1">
+              <div class="card overflow-hidden" style="height: 13em; width: 18em;">
+                <a data-toggle="modal" data-target="#galery_{{$galery->id}}">
+                  <img alt="{{$galery->title}}" src="{{asset($galery->image)}}"
+                    class="d-block w-100">
+                </a>
+                <div class="modal fade" id="galery_{{$galery->id}}" tabindex="-1" role="dialog" aria-labelledby="galeryTitle_{{$galery->id}}" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5>{{$galery->title}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                          <img alt="{{$galery->title}}" src="{{asset($galery->image)}}"
+                          class="img-fluid">
+                        </div>
+                        <div class="modal-footer">
+                          <div class="container">
+                            <p class="text-justify">{{$galery->description}}</p>
+                          </div>
+                        </div>
                     </div>
-                  </div>
+                    </div>
+                </div>
               </div>
-              </div>
-          </div>
-        </figure>
-  
-        <figure class="col-md-4 col-sm-7 col-12">
-          <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(98).jpg" data-size="1600x1067">
-            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(98).jpg"
-              class="img-fluid" />
-          </a>
-        </figure>
-  
-        <figure class="col-md-4 col-sm-7 col-12">
-          <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(131).jpg" data-size="1600x1067">
-            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(131).jpg"
-              class="img-fluid" />
-          </a>
-        </figure>
-
-        <figure class="col-md-4 col-sm-7 col-12">
-          <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(118).jpg" data-size="1600x1067">
-            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(118).jpg"
-              class="img-fluid" />
-          </a>
-        </figure>
-  
-        <figure class="col-md-4 col-sm-7 col-12">
-          <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(128).jpg" data-size="1600x1067">
-            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(128).jpg"
-              class="img-fluid" />
-          </a>
-        </figure> 
-  
+            </div>
+        @endforeach
       </div>
       <div id="btnRight" onclick="slideRightGalery()" class="right btn-cafe"><i class="fa fa-chevron-circle-right h2" aria-hidden="true"></i>
       </div>
@@ -217,6 +193,6 @@
 @endsection
 
 @section('scripts')
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
-<script type="text/javascript" src="{{ asset('js/main.js')}}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+  <script type="text/javascript" src="{{ asset('js/main.js')}}"></script>
 @endsection

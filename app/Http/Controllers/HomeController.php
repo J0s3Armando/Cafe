@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdateUserDataRequest;
+use App\State;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
@@ -37,7 +38,8 @@ class HomeController extends Controller
     public function userProfile()
     {
         $user = Auth::user();
-        return view('pages.profile',compact('user'));
+        $states = State::all();
+        return view('pages.profile',compact(['user','states']));
     }
 
     public function updateUserData(UpdateUserDataRequest $request)
@@ -45,6 +47,7 @@ class HomeController extends Controller
         $user = Auth::user();
         $user->name = $request->input('name');
         $user->last_name = $request->input('last_name');
+        $user->state_id = $request->input('state');
         $user->address = $request->input('address');
         $user->cp = $request->input('cp');
         $user->phone = $request->input('phone');

@@ -88,6 +88,7 @@
                                         <a href="javascript:document.getElementById('prod_{{$product->id}}').submit()" 
                                         class="btn btn-muk-cafe mx-1"><i class="fa fa-refresh" aria-hidden="true"></i>
                                         </a>
+                                        Disp.{{$product->stock}}
                                     </div>
                                 </td>
                                 <td class="align-middle">$ 

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Order;
+use App\Product;
 use App\User;
+use Barryvdh\DomPDF\PDF;
+use Illuminate\Foundation\Console\DownCommand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -14,6 +17,21 @@ class OrderController extends Controller
         $this->middleware('auth');
         if(!Session::has('cart'))
              Session::put('cart',array());
+    }
+
+    public function downloadOrderPDF($id)
+    {
+        $user = Auth::user();
+        $order = Order::findOrFail($id);
+
+        if($order->user->id == $user->id)
+        {   
+            $products = $order->Products;
+            $pdf = \PDF::loadView('orders.order-relationPDF',['products'=>$products,'order'=>$order]);
+            return $pdf->download('Pedido_'.$id.'_pago_'.now()->format('d-m-Y-H-i-s').'.pdf');
+           //return view('orders.order-relationPDF',compact(['products','order']));
+        }
+        return back();
     }
 
     public function ordersView()
@@ -58,6 +76,7 @@ class OrderController extends Controller
     
             foreach($products as $product)
             {
+               $this->reduceQuantity($product);
                $this->newOrder($product,$order);
             }
     
@@ -95,6 +114,13 @@ class OrderController extends Controller
                                     'quantity' => $product->quantity,
                                     'total' => $total]
                                  );
+    }
+
+    private function reduceQuantity($product)
+    {
+        $prod = Product::findOrFail($product->id);
+        $prod->stock -= $product->quantity;
+        $prod->save();
     }
 
     private function total()

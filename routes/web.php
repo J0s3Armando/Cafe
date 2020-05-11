@@ -6,8 +6,9 @@ use App\Image;
 
 Route::get('/', function () {
     $products = Product::inRandomOrder()->limit(5)->get();
-    $carousels = Image::where('type',Image::CARROUSEL)->get();
-    return view('pages.start',compact(['products','carousels']));
+    $carousels = Image::where('type',Image::CAROUSEL)->get();
+    $galeries = Image::where('type',Image::GALERY)->get();
+    return view('pages.start',compact(['products','carousels','galeries']));
 })->name('index');
 
 //about us
@@ -24,18 +25,23 @@ Route::get('/product/{id}/info','ProductController@productInfo')->name('product.
 
 //orders area
 
+Route::get('/orders/{id}/download','OrderController@downloadOrderPDF')->name('downloadPDF');
+
 Route::get('/orders','OrderController@ordersView')->name('orders');
 
 Route::get('/order/new','OrderController@createOrder')->name('new.order');
 
 Route::get('order/{id}/list/products','OrderController@userListOrder')->name('user.list.order');
+
+//cancel order
+Route::put('/order/{id}/cancel','AdminController@cancelOrder')->name('cancelOrder');
 //user area
 
 Route::get('/profile','HomeController@userProfile')->name('profile');
 
-Route::get('/profile/update','HomeController@updateUserData')->name('user.update.data');
+Route::put('/profile/update','HomeController@updateUserData')->name('user.update.data');
 
-Route::post('/product/add-cart','CartController@addCart')->name('add.product.cart');
+Route::post('/product/{id}/add-cart','CartController@addCart')->name('add.product.cart');
 
 Route::get('/product/cart/clear','CartController@clearCart')->name('clear.cart');
 
@@ -76,17 +82,17 @@ Route::get('/panel/admin/{id}/movements','AdminController@userMovements')->name(
 
 Route::delete('/panel/admin/user/{id}/delete','AdminController@deleteUser')->name('admin.delete.user');
 
-Route::get('/panel/admin/carousel','AdminController@carouselViewPanel')->name('admin.carousel.view');
+Route::get('/panel/admin/image','AdminController@imageViewPanel')->name('admin.image.view');
 
-Route::get('/panel/admin/new-image','AdminController@addCarouselImage')->name('carousel.add.image');
+Route::get('/panel/admin/new-image','AdminController@addImage')->name('image.add.image');
 
-Route::post('/panel/admin/new-image','AdminController@addNewImageCarousel')->name('admin.addNewImageToCarousel');
+Route::post('/panel/admin/new-image','AdminController@addNewImage')->name('admin.addNewImage');
 
-Route::get('/panel/admin/{id}/carousel-edit','AdminController@editCarouselContent')->name('admin.edit.carousel');
+Route::get('/panel/admin/{id}/image-edit','AdminController@editImageContent')->name('admin.edit.image');
 
-Route::put('/panel/admin/{id}/carousel-edit','AdminController@editedCarouselContent')->name('admin.edited.carousel');
+Route::put('/panel/admin/{id}/imsge-edit','AdminController@editedImageContent')->name('admin.edited.image');
 
-Route::delete('/panel/admin/{id}/carousel-delete','AdminController@deleteCarouselContent')->name('admin.delete.carousel');
+Route::delete('/panel/admin/{id}/image-delete','AdminController@deleteImageContent')->name('admin.delete.image');
 
 Route::get('/panel/admin/categories','AdminController@categoriesView')->name('admin.categories.view');
 

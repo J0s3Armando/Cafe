@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Carousel;
+use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Category;
@@ -15,13 +14,14 @@ use App\User;
 use App\Http\Requests\AddNewUserRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\AddNewImageRequest;
-use App\Http\Requests\editedCarouselContentRequest;
+use App\Http\Requests\editedImageContentRequest;
 use App\Http\Requests\SaveProductCategoryRequest;
 use App\SubCategory;
 use App\Http\Requests\SaveSubCategoryRequest;
 use App\Order;
 use App\Unit;
 use App\Http\Requests\AddUnitRequest;
+use App\State;
 
 class AdminController extends Controller
 {
@@ -148,7 +148,8 @@ class AdminController extends Controller
         if($request->user()->autorize(1))
         {
             $roles = Role::all();
-            return view('admin.create-user',compact('roles'));
+            $states = State::all();
+            return view('admin.create-user',compact(['roles','states']));
         }
         return back()->with('info','Usted no esta autorizado');
     }
@@ -158,10 +159,11 @@ class AdminController extends Controller
         if($request->user()->autorize(1))
         {
            $user = new User();
-           $user->fill($request->except('password'));
+           $user->fill($request->except(['password','state_id']));
+           $user->state_id = $request->input('state');
            $user->password =Hash::make($request->input('password'));
            $user->save();
-           return redirect()->route('admin.users')->with('info','Usario creado con éxito');
+           return redirect()->route('admin.users')->with('info','Usuario creado con éxito');
         }
         return back()->with('info','Usted no esta autorizado');
     }
@@ -193,58 +195,66 @@ class AdminController extends Controller
         return back()->with('info','Usted no esta autorizado');
     }
 
-    public function carouselViewPanel(Request $request)
+    public function imageViewPanel(Request $request)
     {
         if($request->user()->autorize([1,3]))
         {
-            $carousels = Carousel::all();
-            return view('admin.carousel-view',compact('carousels'));
+            $carousels = Image::where('type',Image::CAROUSEL)->get();
+            $galeries = Image::where('type',Image::GALERY)->get();
+            return view('admin.image-view',compact(['carousels','galeries']));
         }
         return back()->with('info','Usted no esta autorizado');
     }
 
-    public function addCarouselImage(Request $request)
+    public function addImage(Request $request)
     {
         if($request->user()->autorize(1))
         {
-            return view('admin.carousel-new');
+            return view('admin.image-new');
         }
         return back()->with('info','Usted no esta autorizado');
     }
 
-    public function addNewImageCarousel(AddNewImageRequest $request)
+    public function addNewImage(AddNewImageRequest $request)
     {
         if($request->user()->autorize(1))
         {
             $image = $request->file('image');
             $time = time();
-            $path = 'img/carousel';
+            $path = 'img/';
+            $type = $request->input('type');
+            if($type == Image::GALERY)
+            {
+                $path .='galery';
+            }
+            else{
+                $path .='carousel';
+            }
             $image->move($path,$time.$image->getClientOriginalName());
-
-            $carousel= new Carousel();
-            $carousel->fill($request->except('image'));
-            $carousel->image= $path.'/'.$time.$image->getClientOriginalName();
-            $carousel->save();
-            return redirect()->route('admin.carousel.view')->with('info','Imágen agregada con éxito');
+            $imageType= new Image();
+            $imageType->fill($request->except('image'));
+            $imageType->image= $path.'/'.$time.$image->getClientOriginalName();
+            $imageType->save();
+            return redirect()->route('admin.image.view')->with('info','Imágen agregada con éxito');
         }
         return back()->with('info','Usted no esta autorizado');
     }
 
-    public function editCarouselContent(Request $request,$id)
+    public function editImageContent(Request $request,$id)
     {
         if($request->user()->autorize([1,3]))
         {
-            $carousel=Carousel::findOrFail($id);
-            return view('admin.carousel-edit',compact('carousel'));
+            $image=Image::findOrFail($id);
+            return view('admin.image-edit',compact('image'));
         }   
         return back()->with('info','Usted no esta autorizado');
     }
 
-    public function editedCarouselContent(editedCarouselContentRequest $request,$id)
+    public function editedImageContent(editedImageContentRequest $request,$id)
     {
         if($request->user()->autorize([1,3]))
         {
-            $carousel = Carousel::findOrFail($id);
+            $carousel = Image::findOrFail($id);
             $carousel->title=$request->input('title');
             $carousel->description=$request->input('description');
             if($request->hasFile('image') !=null)
@@ -252,24 +262,32 @@ class AdminController extends Controller
                 $oldImage = $carousel->image;
                 $image = $request->file('image');
                 $time= time();
-                $path = 'img/carousel';
+                $path = 'img/';
+                $type = $request->input('type');
+                if($type == Image::GALERY)
+                {
+                    $path .='galery';
+                }
+                else{
+                    $path .='carousel';
+                }
                 $image->move($path,$time.$image->getClientOriginalName());
                 $carousel->image =$path.'/'.$time.$image->getClientOriginalName();
                 Storage::disk('public')->delete($oldImage);
             }
             $carousel->save();
-           return redirect()->route('admin.carousel.view')->with('info','Contenido del carrusel actualizado con éxito');
+           return redirect()->route('admin.image.view')->with('info','Contenido del carrusel actualizado con éxito');
         }
         return back()->with('info','Usted no esta autorizado');
     }
 
-    public function deleteCarouselContent(Request $request,$id)
+    public function deleteImageContent(Request $request,$id)
     {
         if($request->user()->autorize(1))
         {
-            $carousel = Carousel::findOrFail($id);
-            Storage::disk('public')->delete($carousel->image);
-            $carousel->delete();
+            $image = Image::findOrFail($id);
+            Storage::disk('public')->delete($image->image);
+            $image->delete();
             return back()->with('info','Contenido del carrusel eliminado con éxito');
         }
         return back()->with('info','Usted no esta autorizado');
@@ -279,8 +297,8 @@ class AdminController extends Controller
     {
         if($request->user()->autorize([1,3]))
         {
-            $categories = Category::all();
-            $subCategories = SubCategory::all();
+            $categories = Category::orderBy('created_at','desc')->paginate(8);
+            $subCategories = SubCategory::orderBy('created_at','desc')->paginate(8);
             return view('admin.categories-view',compact(['categories','subCategories']));
         }
         return back()->with('info','Usted no esta autorizado');
@@ -463,9 +481,20 @@ class AdminController extends Controller
         if($request->user()->autorize([1,3,4]))
         {
             $order = Order::findOrFail($id);
-            $order->status = Order::COMPLITED;
-            $order->save();
-            return back()->with('info','Se ha realizado el registro de la entrega');
+            if(($order->send_at == null) && ( $order->status ==Order::PENDING) )
+            {
+                $products = $order->Products;
+                foreach ($products as $prod) {
+                    $qty = $prod->pivot->quantity;
+                    $prod->sold +=$qty;
+                    $prod->save();
+                }
+                $order->status = Order::COMPLITED;
+                $order->send_at = now();
+                $order->save();
+                return back()->with('info','Se ha realizado el registro de la entrega');
+            }
+            return back()->with('info','Este pedido ya ha sido enviado.');
         }
         return back()->with('info','Usted no esta autorizado.');
     }
@@ -479,5 +508,29 @@ class AdminController extends Controller
             return view('admin.list-order',compact(['products','order']));
         }
         return back()->with('info','Se ha realizado el registro de la entrega');
+    }
+
+    public function cancelOrder(Request $request, $id)
+    {
+        if($request->user()->autorize(1))
+        {   $order = Order::findOrFail($id);
+            if($order->canceled_at == null)
+            {
+                $products = $order->Products;
+    
+                //cancel order
+                foreach ($products as $prod) {
+                    $qty = $prod->pivot->quantity;
+                    $prod->stock +=$qty;
+                    $prod->save();
+                }
+                $order->status = Order::CANCELED;
+                $order->canceled_at = now();
+                $order->save();
+                return back()->with('info','El pedido se ha cancelado con éxito.');
+            }
+           return back()->with('info','Este pedido ya ha sido cancelado.');
+        }
+        return back()->with('info','Usted no esta autorizado.');
     }
 }

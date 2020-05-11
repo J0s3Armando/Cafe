@@ -26,13 +26,13 @@
         <section class="col-12 mb-3">
             <p class="text-center h4">Usuarios registrados</p>
         </section>
-        <section class="col-12">
+        <section class="col-12 table-responsive">
             <table class="table table-sm table-striped table-hover table-borderless">
                 <thead class="text-center">
                     <tr>                    
                         <th>NOMBRE</th>
                         <th class="hidden">APELLIDOS</th>
-                        <th class="hidden">EMAIL</th>
+                        <th class="hidden">CORREO</th>
                         <th class="hidden">TIPO USUARIO</th>
                         <th>OPCIONES</th>
                     </tr>
@@ -64,7 +64,6 @@
                                                 <div class="container">
                                                     <div class="row">
                                                         <div class="col-12">
-                                                            
                                                             <table class="table">
                                                                 <thead>
                                                                     <tr>
@@ -80,6 +79,10 @@
                                                                     <tr>
                                                                         <td>Apellidos</td>
                                                                         <td>{{$user->last_name}}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Estado</td>
+                                                                        <td>{{$user->State->state}}</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Domicilio</td>
@@ -100,7 +103,6 @@
                                                                 </tbody>
                                                             </table>
                                                         </div>
-                                    
                                                     </div>
                                                 </div>
                                             </div>

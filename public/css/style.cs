@@ -87,40 +87,24 @@ footer {
 
 .container-pdf {
   width: 100%; }
-  .container-pdf h3 {
-    text-align: center;
-    font-size: 1.5em; }
-  .container-pdf .bold {
-    font-weight: bold; }
   .container-pdf .header {
-    width: 100%; }
-    .container-pdf .header img {
-      width: 15em; }
-  .container-pdf .order-details {
-    display: flex; }
-    .container-pdf .order-details section {
-      margin: 0px 10px;
-      padding: 15px 10px; }
+    display: flex;
+    margin-bottom: 50px; }
+    .container-pdf .header .logo, .container-pdf .header .logo-full {
+      width: 100%; }
+      .container-pdf .header .logo img, .container-pdf .header .logo-full img {
+        width: 100%; }
+    .container-pdf .header .logo {
+      width: 7em; }
+    .container-pdf .header .logo-full {
+      height: 7em; }
   .container-pdf table {
     width: 100%;
-    margin: 20px 0px;
     border-collapse: collapse; }
     .container-pdf table th, .container-pdf table td {
-      border: 1px solid rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.2);
       text-align: center;
       padding: 5px; }
-  .container-pdf .products-datail {
-    width: 100%;
-    text-align: center;
-    margin: 40px 0px; }
-    .container-pdf .products-datail .detail {
-      display: inline-block;
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid rgba(0, 0, 0, 0.1); }
-  .container-pdf .thanks p {
-    text-align: center;
-    font-size: 1.3em; }
 
 body {
   font-family: 'Didact Gothic',Arial, Helvetica, sans-serif !important; }
@@ -145,4 +129,4 @@ body {
       background: #443726;
       color: #fff; }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=style.cs.map */

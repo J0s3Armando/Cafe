@@ -19,7 +19,7 @@ class CreateImagesTable extends Migration
             $table->string('image');
             $table->string('title')->nullable();
             $table->string('description')->nullable();
-            $table->enum('type',[Image::CARROUSEL,Image::GALERY])->default(Image::GALERY);
+            $table->enum('type',[Image::CAROUSEL,Image::GALERY])->default(Image::GALERY);
             $table->timestamps();
             $table->softDeletes();
         });

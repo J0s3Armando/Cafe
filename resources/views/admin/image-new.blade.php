@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-    <title>Editar carrusel</title>
+    <title>Agregar imágen</title>
 @endsection
 @section('section')
 <section class="container">
@@ -8,16 +8,30 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <p class="mb-0">Edite el contenido del carrusel</p>
+                    <p class="mb-0">Agregar nueva imágen al carrusel</p>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('admin.edited.carousel',$carousel->id)}}" enctype="multipart/form-data" id="idForm" method="POST">
+                    <form action="{{route('admin.addNewImage')}}" enctype="multipart/form-data"  method="POST">
                         @csrf
-                        @method('put')
+                        <div class="form-group row">
+                            <label for="type" class="col-md-4 col-form-label text-md-right">Posición</label>
+                            <div class="col-md-6">
+                                <select name="type" id="type" autofocus class="custom-select @error('type') is-invalid @enderror">
+                                   <option selected disabled>La imágen estará en..</option>
+                                   <option value="GALERY">Galería</option>
+                                   <option value="CAROUSEL">Carrusel</option>
+                                </select>
+                                @error('type')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="title" class="col-md-4 col-form-label text-md-right">Título</label>
                             <div class="col-md-6">
-                                <input id="title"  placeholder="Título" type="text" maxlength="100" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title',$carousel->title) }}" autocomplete="title" autofocus>
+                                <input id="title"  placeholder="Título" type="text" maxlength="100" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" autocomplete="title" autofocus>
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -28,7 +42,7 @@
                         <div class="form-group row">
                             <label for="description" class="col-md-4 col-form-label text-md-right">Descripción</label>
                             <div class="col-md-6">
-                                <textarea   style="min-height:100px; height:100px; max-height:300px;" name="description" maxlength="200" placeholder="Agrega una descripción a la imágen" id="description" class="form-control @error('description') is-invalid @enderror" autocomplete="description" autofocus >{{old('description',$carousel->description)}}</textarea>
+                                <textarea   style="min-height:100px; height:100px; max-height:300px;" name="description" maxlength="200" placeholder="Agrega una descripción a la imágen" id="description" class="form-control @error('description') is-invalid @enderror" autocomplete="description" autofocus >{{old('description')}}</textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -52,13 +66,13 @@
                         </div> 
                         <div class="form-group row mt-4  justify-content-center d-flex">                           
                             <div class="col-md-6 justify-content-center d-flex">
-                               <input type="submit" disabled="true" id="btnForm" value="Agregar" class="btn btn-muk-cafe">
+                               <input type="submit" value="Agregar" class="btn btn-muk-cafe">
                             </div>
                         </div>
                     </form>
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-5 col-12" id="preview"> <!-- Image preview -->
-                            <img src="{{asset($carousel->image)}}" class="img-fluid" alt="{{$carousel->title}}">
+                            
                         </div>
                     </div>
                 </div>
@@ -66,7 +80,6 @@
         </div>
     </div>
 </section>
-@endsection 
-@section('scripts')
-    <script src="{{asset('js/form.js')}}"></script>
+
+<script src="{{asset('js/form.js')}}"></script>
 @endsection

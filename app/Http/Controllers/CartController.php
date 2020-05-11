@@ -25,10 +25,10 @@ class CartController extends Controller
         return view('shopping.cart-view',compact(['products','total']));
     }
 
-    public function addCart(Request $request)
+    public function addCart(Request $request,$id)
     {
         $cart = Session::get('cart');
-        $product = Product::findOrFail($request->input('id'));
+        $product = Product::findOrFail($id);
         $quantity =$request->input('quantity');
         $product->quantity = $quantity;
         
@@ -61,9 +61,14 @@ class CartController extends Controller
     public function changeQuantityCart(ChangeQuantityProductCartRequest $request,$id)
     {
         $cart = Session::get('cart');
-        $cart[$id]->quantity = $request->input('quantity');
-        Session::put('cart',$cart);
-        return back()->with('info','Se ha cambiado la catidad.');
+        $quantity = $request->input('quantity');
+        if($quantity <= $cart[$id]->stock)
+        {
+            $cart[$id]->quantity = $quantity;
+            Session::put('cart',$cart);
+            return back()->with('info','Se ha cambiado la catidad.');
+        }
+        return back()->with('info','La cantidad supera lo disponible.');
     }
 
     public function cartDetail()
@@ -71,12 +76,31 @@ class CartController extends Controller
         $products = Session::get('cart');
         if(count($products))
         {
-            $user = Auth::user();
-            $total = $this->total();
-            $costSend = 100;
-            return view('shopping.cart-detail',compact(['products','total','costSend','user']));
+            $isAvalible = $this->isAvalible($products);
+            if($isAvalible)
+            {
+                $user = Auth::user();
+                $total = $this->total();
+                $costSend = 100;
+                return view('shopping.cart-detail',compact(['products','total','costSend','user']));
+            }
+            return back()->with('info','Un producto de la lista supera lo disponible, recarga la página para ver el producto.');
         }
-        return back()->with('info','Nesecitas hacer por lo menos una compra.');
+        return back()->with('info','Necesitas hacer por lo menos una compra.');
+    }
+
+    private function isAvalible($products)
+    {
+        $flag = true;
+        foreach ($products as $prod) 
+        {
+            if($prod->quantity > $prod->stock)
+            {
+                $flag = false;
+                break;
+            }
+        }
+        return $flag;
     }
 
     private function total()
@@ -97,6 +121,4 @@ class CartController extends Controller
         }
         return $total;
     }
-
-
 }

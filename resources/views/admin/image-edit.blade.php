@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-    <title>Agregar imágen</title>
+    <title>Editar carrusel</title>
 @endsection
 @section('section')
 <section class="container">
@@ -8,15 +8,16 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <p class="mb-0">Agregar nueva imágen al carrusel</p>
+                    <p class="mb-0">Edite el contenido de las imágenes</p>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('admin.addNewImageToCarousel')}}" enctype="multipart/form-data"  method="POST">
+                    <form action="{{route('admin.edited.image',$image->id)}}" enctype="multipart/form-data" id="idForm" method="POST">
                         @csrf
+                        @method('put')
                         <div class="form-group row">
                             <label for="title" class="col-md-4 col-form-label text-md-right">Título</label>
                             <div class="col-md-6">
-                                <input id="title"  placeholder="Título" type="text" maxlength="100" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" autocomplete="title" autofocus>
+                                <input id="title"  placeholder="Título" type="text" maxlength="100" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title',$image->title) }}" autocomplete="title" autofocus>
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -27,7 +28,9 @@
                         <div class="form-group row">
                             <label for="description" class="col-md-4 col-form-label text-md-right">Descripción</label>
                             <div class="col-md-6">
-                                <textarea   style="min-height:100px; height:100px; max-height:300px;" name="description" maxlength="200" placeholder="Agrega una descripción a la imágen" id="description" class="form-control @error('description') is-invalid @enderror" autocomplete="description" autofocus >{{old('description')}}</textarea>
+                                <textarea   style="min-height:100px; height:100px; max-height:300px;" name="description" maxlength="200" 
+                                placeholder="Agrega una descripción a la imágen" id="description" class="form-control @error('description') is-invalid @enderror" 
+                                autocomplete="description" autofocus >{{old('description',$image->description)}}</textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -45,19 +48,19 @@
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
-                                 @enderror
+                                    @enderror
                                 </div>
                             </div>
                         </div> 
                         <div class="form-group row mt-4  justify-content-center d-flex">                           
                             <div class="col-md-6 justify-content-center d-flex">
-                               <input type="submit" value="Agregar" class="btn btn-muk-cafe">
+                               <input type="submit" disabled="true" id="btnForm" value="Agregar" class="btn btn-muk-cafe">
                             </div>
                         </div>
                     </form>
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-5 col-12" id="preview"> <!-- Image preview -->
-                            
+                            <img src="{{asset($image->image)}}" class="img-fluid" alt="{{$image->title}}">
                         </div>
                     </div>
                 </div>
@@ -65,6 +68,7 @@
         </div>
     </div>
 </section>
-
-<script src="{{asset('js/form.js')}}"></script>
+@endsection 
+@section('scripts')
+    <script src="{{asset('js/form.js')}}"></script>
 @endsection

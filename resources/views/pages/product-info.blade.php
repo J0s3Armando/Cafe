@@ -19,17 +19,13 @@
                   <p class="h5">Aplica mayoreo</p>
                   <p class="h6 text-success">Comprando {{$product->quantity_wholesale_price}} ó más a $ {{$product->wholesale_price}} MXN c/u</p>
                 @endif
+                <p>Disponibles {{$product->stock}}</p>
                 <div class="w-100 mt-3">
-                    <form action="{{route('add.product.cart')}}" method="post">
+                    <form action="{{route('add.product.cart',$product->id)}}" method="post">
                         @csrf
                         <div class="form-group">
                             <div class="col-lg-6 col-md-10 col-12 p-0">
-                                <input type="number" name="quantity" class="form-control" id="quantity" value="1" min="1" max="10">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-6 col-md-10 col-12 p-0">
-                                <input type="number" name="id" class="form-control" hidden id="quantity" value="{{$product->id}}" min="1" max="10">
+                                <input type="number" name="quantity" class="form-control" id="quantity" value="1" min="1" max="{{$product->stock}}">
                             </div>
                         </div>
                         <div class="form-group">

@@ -17,8 +17,8 @@
             </button>
         </div>
     @endif
-    <section class="row my-4">
-        <div class="col-12 table-responsive mb-4">
+    <section class="row my-4 d-flex justify-content-center">
+        <div class="col-md-6 table-responsive mb-4">
             <table class="table table-sm table-borderless table-hover">
                 <tbody class="text-center">
                     <tr>
@@ -27,7 +27,7 @@
                     </tr> 
                     <tr>
                         <td class="align-middle">Dirección</td>
-                        <td class="align-middle">{{$user->address}}</td>
+                        <td class="align-middle">{{$user->State->state}}, {{$user->address}}</td>
                     </tr>  
                     <tr>
                         <td class="align-middle">Correo electrónico</td>
