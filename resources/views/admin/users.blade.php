@@ -9,7 +9,7 @@
             <p class="text-center h4">Administre a sus usuarios</p>
             @if (Auth::user()->autorize(1))
                 <div class="d-flex justify-content-center flex-wrap">
-                    <a href="{{route('admin.create.user')}}" class="btn btn-primary">Nuevo Usuario</a>
+                    <a href="{{route('admin.create.user')}}" class="btn btn-muk-cafe-active">Nuevo Usuario</a>
                 </div>
             @endif
         </div>
@@ -26,15 +26,15 @@
         <section class="col-12 mb-3">
             <p class="text-center h4">Usuarios registrados</p>
         </section>
-        <section class="col-12">
+        <section class="col-12 table-responsive">
             <table class="table table-sm table-striped table-hover table-borderless">
                 <thead class="text-center">
                     <tr>                    
-                        <th>Nombre</th>
-                        <th class="hidden">Apellidos</th>
-                        <th class="hidden">Email</th>
-                        <th class="hidden">Tipo de usuario</th>
-                        <th>Opciones</th>
+                        <th>NOMBRE</th>
+                        <th class="hidden">APELLIDOS</th>
+                        <th class="hidden">CORREO</th>
+                        <th class="hidden">TIPO USUARIO</th>
+                        <th>OPCIONES</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
@@ -46,7 +46,7 @@
                                 <td class="hidden align-middle">{{$user->email}}</td>
                                 <td class="hidden align-middle">{{$user->roles->role_name}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#more_{{$user->id}}">
+                                    <button type="button" class="btn btn-muk-cafe" data-toggle="modal" data-target="#more_{{$user->id}}">
                                         <i class="fa fa-info-circle" aria-hidden="true"></i>
                                         <span class="hidden">
                                             Más</span>
@@ -64,7 +64,6 @@
                                                 <div class="container">
                                                     <div class="row">
                                                         <div class="col-12">
-                                                            
                                                             <table class="table">
                                                                 <thead>
                                                                     <tr>
@@ -74,10 +73,6 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td>Identificador</td>
-                                                                        <td>{{$user->id}}</td>
-                                                                    </tr>
-                                                                    <tr>
                                                                         <td>Nombre</td>
                                                                         <td>{{$user->name}}</td>
                                                                     </tr>
@@ -86,12 +81,12 @@
                                                                         <td>{{$user->last_name}}</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td>Domicilio</td>
-                                                                        <td>{{$user->address}}</td>
+                                                                        <td>Estado</td>
+                                                                        <td>{{$user->State->state}}</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td>Código Postal</td>
-                                                                        <td>{{$user->cp}}</td>
+                                                                        <td>Domicilio</td>
+                                                                        <td>{{$user->address}}, CP: {{$user->cp}}</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Teléfono</td>
@@ -108,7 +103,6 @@
                                                                 </tbody>
                                                             </table>
                                                         </div>
-                                    
                                                     </div>
                                                 </div>
                                             </div>
@@ -119,10 +113,10 @@
                                         </div>
                                     </div>
                                     @if (Auth::user()->autorize([1,3]))
-                                        <a href="{{route('admin.user.movements',$user->id)}}" class="btn btn-success"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> <span class="hidden">Compras</span></a>
+                                        <a href="{{route('admin.user.movements',$user->id)}}" class="btn btn-muk-cafe"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> <span class="hidden">Compras</span></a>
                                     @endif
                                     @if (Auth::user()->autorize(1))
-                                        <button  class="btn  btn-danger" data-toggle="modal" data-target="#delete_{{$user->id}}"><i class="fa fa-trash" aria-hidden="true"></i>
+                                        <button  class="btn  btn-outline-danger" data-toggle="modal" data-target="#delete_{{$user->id}}"><i class="fa fa-trash" aria-hidden="true"></i>
                                             <span class="hidden">Eliminar</span></button>
                                         <div class="modal fade" id="delete_{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="moreDelete{{$user->id}}" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -141,8 +135,8 @@
                                                     </form>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                                    <a href="javascript:document.getElementById('userDelete_{{$user->id}}').submit()" class="btn btn-success">Sí, eliminar</a>
+                                                    <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+                                                    <a href="javascript:document.getElementById('userDelete_{{$user->id}}').submit()" class="btn btn-danger">Sí, eliminar</a>
                                                 </div>
                                                 </div>
                                             </div>

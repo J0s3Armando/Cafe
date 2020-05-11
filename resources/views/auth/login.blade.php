@@ -4,8 +4,8 @@
 @endsection
 @section('section')
 <div class="container">
-    <div class="row justify-content-center mt-4">
-        <div class="col-md-8">
+    <div class="row justify-content-center my-4">
+        <div class="col-md-8 my-4">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
@@ -55,12 +55,12 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-muk-cafe">
                                     {{ __('Login') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link muk-link-cafe" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif

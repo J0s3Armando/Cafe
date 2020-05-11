@@ -26,13 +26,13 @@ class AddProductResquest extends FormRequest
     public function rules()
     {
         return [
-            'description' =>'required|min:20|max:35',
+            'description' =>'required|min:5|max:35',
             'price'=>'required|min:1|numeric',
             'wholesale_price'=>'nullable|min:1|numeric',
             'quantity_wholesale_price'=>'nullable|min:2|max:99|integer',
             'stock'=>'required|min:1|integer',
             'image'=> 'required|image|max:2048',
-            'code'=>'required|string|min:4',
+            'code'=>'nullable|string|min:4',
             'long_description'=>'required|string|min:10',
             'id_categories'=>'required|not_in:0',
             'id_units'=>'required|not_in:0',
@@ -44,8 +44,7 @@ class AddProductResquest extends FormRequest
         return [
             'description.required' => 'Debes colocar un nombre al producto',
             'description.max'=>'La description debe ser menor a 35 caracteres',
-            'description.min'=>'Este campo debe contar 20 caracteres como mínimo',
-            'price.required'=>'Debes colocar un precio al producto',
+            'description.min'=>'Este campo debe contar 5 caracteres como mínimo',
             'price.numeric'=>'Sólo se acepta números',
             'wholesale_price.min'=>'Sólo números mayores a 1',
             'wholesale_price.numeric'=>'Sólo se aceptan números',

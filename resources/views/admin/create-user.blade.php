@@ -36,6 +36,22 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="state" class="col-md-4 col-form-label text-md-right">Estado</label>
+                            <div class="col-md-6">
+                                <select name="state" required id="state" class="custom-select  @error('state') is-invalid @enderror">
+                                    <option selected disabled>Seleccione su estado</option>
+                                    @foreach ($states as $state)
+                                        <option value="{{$state->id}}">{{$state->state}}</option>
+                                    @endforeach
+                                </select>
+                                @error('state')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">Domicilio</label>
                             <div class="col-md-6">
                                 <input id="address"  placeholder="Domicilio" minlength="4" type="text" maxlength="200" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" autocomplete="address" autofocus>
@@ -115,7 +131,7 @@
                         </div>
                         <div class="form-group row mt-4  justify-content-center d-flex">                           
                             <div class="col-md-6 justify-content-center d-flex">
-                               <input type="submit" value="Agregar" class="btn btn-success">
+                               <input type="submit" value="Agregar" class="btn btn-muk-cafe">
                             </div>
                         </div>
                     </form>

@@ -20,8 +20,9 @@ class CreateProductsTable extends Migration
             $table->integer('wholesale_price')->nullable();
             $table->integer('quantity_wholesale_price')->nullable();
             $table->integer('stock');
+            $table->integer('sold')->default(0);
             $table->string('image');
-            $table->string('code');
+            $table->string('code')->nullable();
             $table->string('long_description');
             $table->unsignedBigInteger('id_categories');
             $table->unsignedBigInteger('id_units');

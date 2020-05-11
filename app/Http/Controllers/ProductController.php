@@ -13,4 +13,10 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         return view('pages.product-info',compact('product'));
     }
+    
+    public function showAllProducts()
+    {
+        $products = Product::orderBy('id_units','desc')->paginate(8);
+        return view('pages.all-products',compact('products'));
+    }
 }

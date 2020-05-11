@@ -8,7 +8,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <p>Agregar un nuevo producto</p>
+                        <p class="mb-0">Agregar un nuevo producto</p>
                     </div>
                     <div class="card-body">
                         <form action="{{route('panel.admin.addProduct')}}" enctype="multipart/form-data" method="POST">
@@ -27,7 +27,7 @@
                             <div class="form-group row">
                                 <label for="code" class="col-md-4 col-form-label text-md-right">Código</label>
                                 <div class="col-md-6">
-                                    <input id="code" required placeholder="ejemplo XKDT01" minlength="4" type="text" maxlength="40" class="form-control @error('code') is-invalid @enderror" name="code" value="{{ old('code') }}" autocomplete="code" autofocus>
+                                    <input id="code" placeholder="ejemplo XKDT01 (opcional)" minlength="4" type="text" maxlength="40" class="form-control @error('code') is-invalid @enderror" name="code" value="{{ old('code') }}" autocomplete="code" autofocus>
                                     @error('code')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -49,7 +49,7 @@
                             <div class="form-group row">
                                 <label for="wholesale_price" class="col-md-4 col-form-label text-md-right">Precio al mayoreo</label>
                                 <div class="col-md-6">
-                                    <input type="number" placeholder="00.00" min="1" name="wholesale_price" id="wholesale_price" step=".10" class="form-control @error('wholesale_price') is-invalid @enderror" value="{{old('wholesale_price')}}" autocomplete="wholesale_price">
+                                    <input type="number" placeholder="00.00 (opcional)" min="1" name="wholesale_price" id="wholesale_price" step=".10" class="form-control @error('wholesale_price') is-invalid @enderror" value="{{old('wholesale_price')}}" autocomplete="wholesale_price">
                                     @error('wholesale_price')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -60,7 +60,7 @@
                             <div class="form-group row">
                                 <label for="quantity_wholesale_price" class="col-md-4 col-form-label text-md-right">Aplicable al mayoreo</label>
                                 <div class="col-md-6">
-                                    <input type="number" placeholder="00" min="2" name="quantity_wholesale_price" id="quantity_wholesale_price" class="form-control @error('quantity_wholesale_price') is-invalid @enderror" value="{{old('quantity_wholesale_price')}}" autocomplete="quantity_wholesale_price">
+                                    <input type="number" placeholder="00 (opcional)" min="2" name="quantity_wholesale_price" id="quantity_wholesale_price" class="form-control @error('quantity_wholesale_price') is-invalid @enderror" value="{{old('quantity_wholesale_price')}}" autocomplete="quantity_wholesale_price">
                                     @error('quantity_wholesale_price')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -144,7 +144,7 @@
                             </div>
                             <div class="form-group row mt-4  justify-content-center d-flex">                           
                                 <div class="col-md-6 justify-content-center d-flex">
-                                   <input type="submit" value="Agregar" class="btn btn-success">
+                                   <input type="submit" value="Agregar" class="btn btn-muk-cafe">
                                 </div>
                             </div>
                         </form>
@@ -158,5 +158,8 @@
             </div>
         </div>
     </section>
-<script src="{{asset('js/form.js')}}"></script>
+@endsection
+    
+@section('scripts')
+    <script src="{{asset('js/form.js')}}"></script>
 @endsection

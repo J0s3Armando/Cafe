@@ -8,11 +8,26 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <p class="mb-0">Agregar nuevo imágen al carrusel</p>
+                    <p class="mb-0">Agregar nueva imágen al carrusel</p>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('admin.addNewImageToCarousel')}}" enctype="multipart/form-data"  method="POST">
+                    <form action="{{route('admin.addNewImage')}}" enctype="multipart/form-data"  method="POST">
                         @csrf
+                        <div class="form-group row">
+                            <label for="type" class="col-md-4 col-form-label text-md-right">Posición</label>
+                            <div class="col-md-6">
+                                <select name="type" id="type" autofocus class="custom-select @error('type') is-invalid @enderror">
+                                   <option selected disabled>La imágen estará en..</option>
+                                   <option value="GALERY">Galería</option>
+                                   <option value="CAROUSEL">Carrusel</option>
+                                </select>
+                                @error('type')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="title" class="col-md-4 col-form-label text-md-right">Título</label>
                             <div class="col-md-6">
@@ -51,7 +66,7 @@
                         </div> 
                         <div class="form-group row mt-4  justify-content-center d-flex">                           
                             <div class="col-md-6 justify-content-center d-flex">
-                               <input type="submit" value="Agregar" class="btn btn-success">
+                               <input type="submit" value="Agregar" class="btn btn-muk-cafe">
                             </div>
                         </div>
                     </form>
