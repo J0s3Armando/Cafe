@@ -150,7 +150,7 @@
       <h2 class="text-center">Galería</h2>
     </div>
     <div class="col-12 popular w-100">
-      <div id="btnLeft" onclick="slideLeftGalery()" class="left btn-cafe"><i class="fa fa-chevron-circle-left h2" aria-hidden="true"></i>
+      <div onclick="slideLeftGalery()" class="left btn-cafe"><i class="fa fa-chevron-circle-left h2" aria-hidden="true"></i>
       </div>
       <div class="flex-grow-1 items mx-2" id="galery">
         @foreach ($galeries as $galery)
@@ -185,7 +185,7 @@
             </div>
         @endforeach
       </div>
-      <div id="btnRight" onclick="slideRightGalery()" class="right btn-cafe"><i class="fa fa-chevron-circle-right h2" aria-hidden="true"></i>
+      <div  onclick="slideRightGalery()" class="right btn-cafe"><i class="fa fa-chevron-circle-right h2" aria-hidden="true"></i>
       </div>
     </div>
   </div>

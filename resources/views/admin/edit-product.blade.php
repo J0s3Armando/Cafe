@@ -28,7 +28,7 @@
                             <div class="form-group row">
                                 <label for="code" class="col-md-4 col-form-label text-md-right">Código</label>
                                 <div class="col-md-6">
-                                    <input id="code" required placeholder="ejemplo XKDT01" minlength="4" type="text" maxlength="40" class="form-control @error('code') is-invalid @enderror" name="code" value="{{ old('code',$product->code) }}" autocomplete="code" autofocus>
+                                    <input id="code"  placeholder="ejemplo XKDT01" minlength="4" type="text" maxlength="40" class="form-control @error('code') is-invalid @enderror" name="code" value="{{ old('code',$product->code) }}" autocomplete="code" autofocus>
                                     @error('code')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

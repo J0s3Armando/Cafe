@@ -14,7 +14,9 @@
             @foreach ($products as $product)
              <div style="width:15em;" class="m-2">
                 <div class="card">
-                    <img src="{{ asset($product->image) }}" class="card-img-top">
+                    <div class="overflow-hidden w-100" style="height: 10em !important;">
+                        <img src="{{ asset($product->image) }}" class="card-img-top d-block">
+                    </div>
                     <div class="card-body">
                     <p class="card-title mb-0 small muk-title">CAFÉ<span class="font-weight-bold">MUKULUM</span></p>
                     <p class="card-text mb-1 h6">{{$product->description}}</p>

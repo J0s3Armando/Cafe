@@ -78,9 +78,10 @@ class OrderController extends Controller
                $this->reduceQuantity($product);
                $this->newOrder($product,$order);
             }
-    
-            Session::forget('cart');
-            return redirect()->route('orders')->with('info','Se ha realizado su pedido.');
+            Session::forget('cart'); 
+            return redirect()->route('orders')->with('info','Se ha realizado su pedido. 
+            Descarga el PDF para realizar tu pago en cualquier sucursal bancaria y/o tienda
+             de conveniencia de tu preferencia. Contáctanos cuando hayas realizado el pago para enviar tu pedido.');
         }
         return redirect()->route('orders')->with('info','Este pedido ya se ha realizado.'); 
     }
