@@ -72,6 +72,7 @@
                                                         @else
                                                             {{$product->categories}}
                                                         @endif
+                                                        - {{$product->unit->description}}
                                                     </h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
@@ -90,22 +91,12 @@
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td class="align-middle">Descripción corta</td>
-                                                                            <td class="align-middle hidden">{{$product->description}}</td>
-                                                                        </tr>
-                                                                        <tr>
                                                                             <td class="align-middle">Almacén</td>
                                                                             <td class="align-middle">{{$product->stock}}</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td class="align-middle">Código</td>
-                                                                            <td class="align-middle">
-                                                                                @if ($product->code != null)
-                                                                                 {{$product->code}}
-                                                                                @else
-                                                                                    -----    
-                                                                                @endif
-                                                                            </td>
+                                                                            <td class="align-middle">Vendidos</td>
+                                                                            <td class="align-middle">{{$product->sold}}</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="align-middle">Precio</td>
@@ -115,7 +106,7 @@
                                                                             <td class="align-middle">Precio al mayoreo</td>
                                                                             <td class="align-middle">$
                                                                                 @if ($product->wholesale_price !=null)
-                                                                                    {{number_format($product->wholesale_price)}}
+                                                                                    {{number_format($product->wholesale_price,2)}}
                                                                                 @else
                                                                                     -----
                                                                                 @endif
@@ -132,25 +123,10 @@
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td class="align-middle">Tipo</td>
-                                                                            <td class="align-middle">
-                                                                                @if ($product->categories->id_SubCategory != null)
-                                                                                    {{$product->categories->Subcategory->description}}
-                                                                                @else
-                                                                                    {{$product->categories}}
-                                                                                @endif
-                                                                                - {{$product->unit->description}}
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="align-middle">Descripción</td>
-                                                                            <td class="align-middle">{{$product->long_description}}</td>
-                                                                        </tr>
-                                                                        <tr>
                                                                             <td class="align-middle">Imágen</td>
                                                                             <td class="align-middle">
-                                                                                <div class="overflow-hidden w-100" style="height: 11em !important;">
-                                                                                    <img src="{{asset($product->image)}}" class="img-fluid w-75" alt="">
+                                                                                <div class="overflow-hidden w-100 mb-0" style="max-height:11em !important;">
+                                                                                    <img src="{{asset($product->image)}}" class="img-fluid w-75">
                                                                                 </div>
                                                                             </td>
                                                                         </tr>

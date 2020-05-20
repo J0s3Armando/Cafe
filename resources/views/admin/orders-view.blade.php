@@ -94,7 +94,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="align-middle">Fecha del pedido</td>
-                                                                    <td class="align-middle"> {{$order->created_at->format('d/m/Y H:i A')}}</td>
+                                                                    <td class="align-middle"> {{$order->created_at->format('d/m/y h:i A')}}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="align-middle">Dirección</td>
