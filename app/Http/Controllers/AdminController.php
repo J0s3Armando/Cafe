@@ -46,7 +46,7 @@ class AdminController extends Controller
 
     public function index(Request $request)
     {
-        if($request->user()->autorize([1,3]))
+        if($request->user()->autorize([1,3,4]))
         {
             $products = Product::all();
             return view('admin.index',compact(['products']));
@@ -308,7 +308,7 @@ class AdminController extends Controller
 
     public function categoriesView(Request $request)
     {
-        if($request->user()->autorize([1,3]))
+        if($request->user()->autorize([1,3,4]))
         {
             $categories = Category::orderBy('created_at','desc')->paginate(8);
             $subCategories = SubCategory::orderBy('created_at','desc')->paginate(8);
@@ -383,7 +383,7 @@ class AdminController extends Controller
     
     public function editSubcategory(Request $request, $id)
     {
-        if($request->user()->autorize(1))
+        if($request->user()->autorize([1,3]))
         {
             $subCategory = SubCategory::findOrFail($id);
             return view('admin.subCategory-edit',compact('subCategory'));
@@ -393,7 +393,7 @@ class AdminController extends Controller
 
     public function editedSubcategory(SaveSubCategoryRequest $request, $id)
     {
-        if($request->user()->autorize(1))
+        if($request->user()->autorize([1,3]))
         {
             $subCategory = SubCategory::findOrFail($id);
             $subCategory->description = $request->input('description');
@@ -421,7 +421,7 @@ class AdminController extends Controller
 
     public function unitsView(Request $request)
     {
-        if($request->user()->autorize([1,3]))
+        if($request->user()->autorize([1,3,4]))
         {
             $units = Unit::all();
             return view('admin.units',compact('units'));
@@ -465,13 +465,13 @@ class AdminController extends Controller
 
     public function deleteUnit(Request $request,$id)
     {
-        if($request->user()->autorize([1,3]))
-        {
+        if($request->user()->autorize(1))
+        {   
           $unit = Unit::findOrFail($id);
           $products = $unit->Products->where('id_units',$id)->first();
           if($products != null)
           {
-            return back()->with('info','No puede eliminar este campo, ya que está en uso en los productos.');
+            return back()->with('info','No puedes eliminar este campo, ya que está en uso en los productos.');
           }
           $unit->delete();
            return back()->with('info','Unidad eliminada con éxito.');
@@ -481,7 +481,7 @@ class AdminController extends Controller
 
     public function ordersView(Request $request)
     {
-        if($request->user()->autorize([1,3]))
+        if($request->user()->autorize([1,3,4]))
         {
             $orders = Order::where('status',Order::PENDING)->paginate(10);
             return view('admin.orders-view',compact('orders'));
