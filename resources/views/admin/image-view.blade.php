@@ -23,9 +23,6 @@
         </div>
     @endif
     
-    <section class="row justify-content-center d-flex">
-    </section>
-
     <div class="row my-4">
         <div class="col-12">
             <h2 class="text-center">Carrusel</h2>
@@ -107,7 +104,7 @@
                                     <div class="card-body">
                                         <p class="card-text mb-1 font-weight-bold text-truncate">{{$galery->title}}</p>
                                         <p class="card-title mb-1 text-truncate">{{$galery->description}}</p>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center justify-content-center">
                                             <a href="{{route('admin.edit.image',$galery->id)}}" class="btn muk-color-cafe"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
                                         @if(Auth::user()->autorize(1))
                                             <button  class="btn text-danger" data-toggle="modal" data-target="#imagedelete_{{$galery->id}}"><i class="fa fa-trash" aria-hidden="true"></i>
