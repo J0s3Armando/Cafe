@@ -100,7 +100,7 @@
         </section>
         <section class="products-datail">
             <h4> Sub-Total: $ {{number_format($order->subTotal,2)}} - 
-                 Costo de envío: $ {{number_format($order->send,2)}}
+                Costo de envío: $ {{number_format($order->send,2)}}
             </h4>
             <hr>
             <h4> Total a pagar: $ {{number_format($order->total,2)}} </h4>
@@ -109,7 +109,7 @@
         <section class="bank">
             <h4>Condiciones y forma de pago</h4>
             <p>El pago se realizará en un plazo de 15 días</p>
-            <p>Banco santander</p>
+            <p>Cualquier sucursal bancaria de tu preferencia</p>
             <p>Cuenta: xxxx-xxxx-xxxx-xxxx</p>
             <h4>Contacto</h4>
             <p>Atiende - Jaime Guillén</p>

@@ -10,10 +10,12 @@
                 <div class="d-flex justify-content-center flex-wrap">
                     <a href="{{route('admin.units.view')}}" class="btn btn-muk-cafe-active m-1">Unidades del producto</a>
                     @if (Auth::user()->autorize(1))
-                    <a href="{{route('panel.admin.create-product')}}" class="btn btn-muk-cafe-active m-1">Nuevo producto</a>
+                        <a href="{{route('panel.admin.create-product')}}" class="btn btn-muk-cafe-active m-1">Nuevo producto</a>
                     @endif
-                    <a href="{{route('admin.users')}}" class="btn btn-muk-cafe-active m-1">Usuarios</a>
-                    <a href="{{route('admin.image.view')}}" class="btn btn-muk-cafe-active m-1">Imágenes</a>
+                    @if (Auth::user()->autorize([1,3]))
+                        <a href="{{route('admin.users')}}" class="btn btn-muk-cafe-active m-1">Usuarios</a>
+                        <a href="{{route('admin.image.view')}}" class="btn btn-muk-cafe-active m-1">Imágenes</a>
+                    @endif
                     <a href="{{route('admin.categories.view')}}" class="btn btn-muk-cafe-active m-1">Categorías</a>
                     <a href="{{route('admin.orders.view')}}" class="btn btn-muk-cafe-active m-1">Pedidos</a>
                 </div>
@@ -143,8 +145,10 @@
                                             </div>
                                             </div>
                                         </div>
-                                        <a href="{{route('admin.edit.product',$product->id)}}" class="btn btn-muk-cafe my-1"><i class="fa fa-pencil" aria-hidden="true"></i>
-                                            <span class="hidden">Editar</span></a>
+                                        @if(Auth::user()->autorize([1,3]))
+                                            <a href="{{route('admin.edit.product',$product->id)}}" class="btn btn-muk-cafe my-1"><i class="fa fa-pencil" aria-hidden="true"></i>
+                                                <span class="hidden">Editar</span></a>
+                                        @endif
                                         @if (Auth::user()->autorize(1))
                                             <button  class="btn  btn-outline-danger" data-toggle="modal" data-target="#delete_{{$product->id}}"><i class="fa fa-trash" aria-hidden="true"></i>
                                                 <span class="hidden">Eliminar</span></button>

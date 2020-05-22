@@ -100,7 +100,9 @@
                                 <th>DESCRIPCIÓN</th>
                                 <th>TIPO</th>
                                 <th class="hidden">FECHA REGISTRO</th>
-                                <th>OPCIONES</th>
+                                @if(Auth::user()->autorize([1,3]))
+                                    <th>OPCIONES</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody class="text-center">
@@ -113,37 +115,39 @@
                                         <td class="align-middle">-----</td>
                                     @endif
                                     <td class="align-middle hidden">{{$category->created_at->format('d/m/Y H:i A')}}</td>
-                                    <td>
-                                        <a href="{{route('admin.edit.category',$category->id)}}" class="btn btn-muk-cafe my-1"><i class="fa fa-pencil" aria-hidden="true"></i>
-                                        <span class="hidden">Editar</span></a>
-                                        @if (Auth::user()->autorize(1))
-                                            <button  class="btn  btn-outline-danger" data-toggle="modal" data-target="#delete_{{$category->id}}"><i class="fa fa-trash" aria-hidden="true"></i>
-                                                <span class="hidden">Eliminar</span></button>
-                                            <div class="modal fade" id="delete_{{$category->id}}" tabindex="-1" role="dialog" aria-labelledby="moreDelete{{$category->id}}" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="moreDelete{{$category->id}}">{{$category->category}}</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        ¿Está seguro de que desea eliminar esta categoría?
-                                                        <form action="{{route('admin.delete.category',$category->id)}}" id="category_{{$category->id}}" hidden method="POST">
-                                                            @csrf
-                                                            @method('delete')
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
-                                                        <a href="javascript:document.getElementById('category_{{$category->id}}').submit()" class="btn btn-danger">Sí, eliminar</a>
-                                                    </div>
+                                    @if(Auth::user()->autorize([1,3]))
+                                        <td>
+                                            <a href="{{route('admin.edit.category',$category->id)}}" class="btn btn-muk-cafe my-1"><i class="fa fa-pencil" aria-hidden="true"></i>
+                                            <span class="hidden">Editar</span></a>
+                                            @if (Auth::user()->autorize(1))
+                                                <button  class="btn  btn-outline-danger" data-toggle="modal" data-target="#delete_{{$category->id}}"><i class="fa fa-trash" aria-hidden="true"></i>
+                                                    <span class="hidden">Eliminar</span></button>
+                                                <div class="modal fade" id="delete_{{$category->id}}" tabindex="-1" role="dialog" aria-labelledby="moreDelete{{$category->id}}" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="moreDelete{{$category->id}}">{{$category->category}}</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            ¿Está seguro de que desea eliminar esta categoría?
+                                                            <form action="{{route('admin.delete.category',$category->id)}}" id="category_{{$category->id}}" hidden method="POST">
+                                                                @csrf
+                                                                @method('delete')
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+                                                            <a href="javascript:document.getElementById('category_{{$category->id}}').submit()" class="btn btn-danger">Sí, eliminar</a>
+                                                        </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @endif
-                                    </td>
+                                            @endif
+                                        </td>
+                                    @endif
                                 </tr>     
                             @endforeach
                         </tbody>
@@ -169,7 +173,9 @@
                             <tr>
                                 <th>DESCRIPCIÓN</th>
                                 <th class="hidden">FECHA REGISTRO</th>
-                                <th>OPCIONES</th>
+                                @if(Auth::user()->autorize([1,3]))
+                                    <th>OPCIONES</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody class="text-center">
@@ -177,37 +183,39 @@
                                 <tr>
                                     <td class="align-middle">{{$subCategory->description}}</td>
                                     <td class="align-middle hidden">{{$subCategory->created_at->format('d/m/Y H:i A')}}</td>
-                                    <td>
-                                        <a href="{{route('admin.edit.subCategory',$subCategory->id)}}" class="btn btn-muk-cafe my-1"><i class="fa fa-pencil" aria-hidden="true"></i>
-                                        <span class="hidden">Editar</span></a>
-                                        @if (Auth::user()->autorize(1))
-                                            <button  class="btn  btn-outline-danger" data-toggle="modal" data-target="#deleteSub_{{$subCategory->id}}"><i class="fa fa-trash" aria-hidden="true"></i>
-                                                <span class="hidden">Eliminar</span></button>
-                                            <div class="modal fade" id="deleteSub_{{$subCategory->id}}" tabindex="-1" role="dialog" aria-labelledby="moreDeleteSub{{$subCategory->id}}" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="moreDeleteSub{{$subCategory->id}}">{{$subCategory->description}}</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        ¿Está seguro de que desea eliminar esta subcategoría?
-                                                        <form action="{{route('admin.delete.subCategory',$subCategory->id)}}" id="subCategory_{{$subCategory->id}}" hidden method="POST">
-                                                            @csrf
-                                                            @method('delete')
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
-                                                        <a href="javascript:document.getElementById('subCategory_{{$subCategory->id}}').submit()" class="btn btn-danger">Sí, eliminar</a>
-                                                    </div>
+                                    @if(Auth::user()->autorize([1,3]))
+                                        <td>
+                                            <a href="{{route('admin.edit.subCategory',$subCategory->id)}}" class="btn btn-muk-cafe my-1"><i class="fa fa-pencil" aria-hidden="true"></i>
+                                            <span class="hidden">Editar</span></a>
+                                            @if (Auth::user()->autorize(1))
+                                                <button  class="btn  btn-outline-danger" data-toggle="modal" data-target="#deleteSub_{{$subCategory->id}}"><i class="fa fa-trash" aria-hidden="true"></i>
+                                                    <span class="hidden">Eliminar</span></button>
+                                                <div class="modal fade" id="deleteSub_{{$subCategory->id}}" tabindex="-1" role="dialog" aria-labelledby="moreDeleteSub{{$subCategory->id}}" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="moreDeleteSub{{$subCategory->id}}">{{$subCategory->description}}</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            ¿Está seguro de que desea eliminar esta subcategoría?
+                                                            <form action="{{route('admin.delete.subCategory',$subCategory->id)}}" id="subCategory_{{$subCategory->id}}" hidden method="POST">
+                                                                @csrf
+                                                                @method('delete')
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+                                                            <a href="javascript:document.getElementById('subCategory_{{$subCategory->id}}').submit()" class="btn btn-danger">Sí, eliminar</a>
+                                                        </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @endif
-                                    </td>
+                                            @endif
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

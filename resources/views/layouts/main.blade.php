@@ -57,7 +57,7 @@
                       <a class="btn btn-block muk-light" href="{{route('orders')}}"><i class="fa fa-shopping-bag mr-2" aria-hidden="true"></i>Mis pedidos</a>
                     </li>
                   </li>
-                  @if(Auth::user()->autorize([1,3]))
+                  @if(Auth::user()->autorize([1,3,4]))
                     <li>
                       <a class="btn btn-block muk-light" href="{{route('panel.admin')}}"><i class="fa fa-lock mr-2" aria-hidden="true"></i>Panel de administración</a>
                     </li>

@@ -119,61 +119,65 @@
                                 </div>
                                 <a href="{{route('admin.list.order',$order->id)}}" class="btn btn-muk-cafe my-1 text-center"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
                                 <span class="hidden">Listar</span></a>
-                                <a href="{{route('admin.download.order',$order->id)}}" class="btn btn-muk-cafe-active my-1"><i class="fa fa-download" aria-hidden="true"></i>
-                                    <span class="hidden">Pedido</span></a>
-                                @if ($order->status ==='PENDING')
-                                    <button  class="btn  btn-success" data-toggle="modal" data-target="#order_{{$order->id}}"><i class="fa fa-handshake-o" aria-hidden="true"></i>
-                                        <span class="hidden">Entregar</span>
-                                    </button>
-                                    <div class="modal fade" id="order_{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="moreOrder{{$order->id}}" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="moreOrder{{$order->id}}">Realizar entrega</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    ¿Desea realizar la entrega para la orden número {{$order->id}} a {{$order->user->name}} {{$order->user->last_name}}?
-                                                    <form action="{{route('admin.order.sended',$order->id)}}" id="orderSended_{{$order->id}}" hidden method="POST">
-                                                        @csrf
-                                                        @method('put')
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                                    <a href="javascript:document.getElementById('orderSended_{{$order->id}}').submit()" class="btn btn-success">Sí, entregar</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button  class="btn  btn-danger" data-toggle="modal" data-target="#orderCancel_{{$order->id}}"><i class="fa fa-window-close" aria-hidden="true"></i>
-                                        <span class="hidden">Cancelar</span>
-                                    </button>
-                                    <div class="modal fade" id="orderCancel_{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="moreOrderCancel{{$order->id}}" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="moreOrderCancel{{$order->id}}">Cancelar pedido</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    ¿Desea cancelar la orden número {{$order->id}} a {{$order->user->name}} {{$order->user->last_name}}?
-                                                    <form action="{{route('cancelOrder',$order->id)}}" id="orderCanceled_{{$order->id}}" hidden method="POST">
-                                                        @csrf
-                                                        @method('put')
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
-                                                    <a href="javascript:document.getElementById('orderCanceled_{{$order->id}}').submit()" class="btn btn-danger">Si, cancelar</a>
+                                @if (Auth::user()->autorize([1,3]))
+                                    <a href="{{route('admin.download.order',$order->id)}}" class="btn btn-muk-cafe-active my-1"><i class="fa fa-download" aria-hidden="true"></i>
+                                        <span class="hidden">Pedido</span></a>
+                                    @if ($order->status ==='PENDING')
+                                        <button  class="btn  btn-success" data-toggle="modal" data-target="#order_{{$order->id}}"><i class="fa fa-handshake-o" aria-hidden="true"></i>
+                                            <span class="hidden">Entregar</span>
+                                        </button>
+                                        <div class="modal fade" id="order_{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="moreOrder{{$order->id}}" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="moreOrder{{$order->id}}">Realizar entrega</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        ¿Desea realizar la entrega para la orden número {{$order->id}} a {{$order->user->name}} {{$order->user->last_name}}?
+                                                        <form action="{{route('admin.order.sended',$order->id)}}" id="orderSended_{{$order->id}}" hidden method="POST">
+                                                            @csrf
+                                                            @method('put')
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                        <a href="javascript:document.getElementById('orderSended_{{$order->id}}').submit()" class="btn btn-success">Sí, entregar</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        @if (Auth::user()->autorize(1))
+                                            <button  class="btn  btn-danger" data-toggle="modal" data-target="#orderCancel_{{$order->id}}"><i class="fa fa-window-close" aria-hidden="true"></i>
+                                                <span class="hidden">Cancelar</span>
+                                            </button>
+                                            <div class="modal fade" id="orderCancel_{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="moreOrderCancel{{$order->id}}" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="moreOrderCancel{{$order->id}}">Cancelar pedido</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            ¿Desea cancelar la orden número {{$order->id}} a {{$order->user->name}} {{$order->user->last_name}}?
+                                                            <form action="{{route('cancelOrder',$order->id)}}" id="orderCanceled_{{$order->id}}" hidden method="POST">
+                                                                @csrf
+                                                                @method('put')
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
+                                                            <a href="javascript:document.getElementById('orderCanceled_{{$order->id}}').submit()" class="btn btn-danger">Si, cancelar</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endif
                                 @endif
                              </td>
                             </tr>

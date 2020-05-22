@@ -34,7 +34,7 @@ class AdminController extends Controller
 
     public function downloadOrder(Request $request,$id)
     {
-        if($request->user()->autorize([1,3,4]))
+        if($request->user()->autorize([1,3]))
         {
             $order = Order::findOrFail($id);
             $products = $order->Products;
@@ -491,7 +491,7 @@ class AdminController extends Controller
 
     public function orderSended(Request $request,$id)
     {
-        if($request->user()->autorize([1,3,4]))
+        if($request->user()->autorize([1,3]))
         {
             $order = Order::findOrFail($id);
             if(($order->send_at == null) && ( $order->status ==Order::PENDING) )

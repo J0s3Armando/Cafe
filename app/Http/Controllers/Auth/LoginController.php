@@ -34,7 +34,7 @@ class LoginController extends Controller
 
     public function redirectPath()
     {
-        if(auth()->user()->idRole==1 || auth()->user()->idRole==3)
+        if(auth()->user()->idRole==1 || auth()->user()->idRole==3 || auth()->user()->idRole==4)
         {
             return '/panel/admin';
         }
